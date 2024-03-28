@@ -22,6 +22,7 @@ public class CourseMate {
     private final Email email;
     private final TelegramHandle telegramHandle;
     private final Rating rating;
+    private final boolean isConfirmed;
 
     // Data fields
     private final Set<Skill> skills = new HashSet<>();
@@ -41,6 +42,7 @@ public class CourseMate {
         this.telegramHandle = telegramHandle;
         this.skills.addAll(skills);
         this.rating = new Rating("0");
+        this.isConfirmed = false;
     }
 
     /**
@@ -48,7 +50,7 @@ public class CourseMate {
      * Every field must be present and not null.
      */
     public CourseMate(Name name, Phone phone, Email email, TelegramHandle telegramHandle,
-            Set<Skill> skills, Rating rating) {
+            Set<Skill> skills, Rating rating, boolean isConfirmed) {
         requireAllNonNull(name, phone, email, skills, rating);
         this.name = name;
         this.phone = phone;
@@ -56,6 +58,7 @@ public class CourseMate {
         this.skills.addAll(skills);
         this.telegramHandle = telegramHandle;
         this.rating = rating;
+        this.isConfirmed = isConfirmed;
     }
 
     public Name getName() {
@@ -72,6 +75,10 @@ public class CourseMate {
 
     public Rating getRating() {
         return rating;
+    }
+
+    public boolean getIsConfirmed() {
+        return isConfirmed;
     }
 
     /**
@@ -128,13 +135,14 @@ public class CourseMate {
                         : telegramHandle.equals(otherCourseMate.telegramHandle)
                 )
                 && rating.equals(otherCourseMate.rating)
+                && isConfirmed == otherCourseMate.isConfirmed
                 && skills.equals(otherCourseMate.skills);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, telegramHandle, rating, skills);
+        return Objects.hash(name, phone, email, telegramHandle, rating, isConfirmed, skills);
     }
 
     @Override
@@ -145,6 +153,7 @@ public class CourseMate {
                 .add("email", email)
                 .add("telegramHandle", telegramHandle)
                 .add("rating", rating)
+                .add("isConfirmed", isConfirmed)
                 .add("skills", skills)
                 .toString();
     }

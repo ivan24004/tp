@@ -30,6 +30,7 @@ class JsonAdaptedCourseMate {
     private final String email;
     private final String telegramHandle;
     private final String rating;
+    private final boolean isConfirmed;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
 
     /**
@@ -40,12 +41,14 @@ class JsonAdaptedCourseMate {
                                  @JsonProperty("email") String email,
                                  @JsonProperty("telegramHandle") String telegramHandle,
                                  @JsonProperty("rating") String rating,
+                                 @JsonProperty("isConfirmed") boolean isConfirmed,
                                  @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.telegramHandle = telegramHandle;
         this.rating = rating;
+        this.isConfirmed = isConfirmed;
         if (skills != null) {
             this.skills.addAll(skills);
         }
@@ -64,6 +67,7 @@ class JsonAdaptedCourseMate {
             telegramHandle = "";
         }
         rating = source.getRating().value;
+        isConfirmed = source.getIsConfirmed();
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -125,6 +129,7 @@ class JsonAdaptedCourseMate {
         final Rating modelRating = new Rating(rating);
 
         final Set<Skill> modelSkills = new HashSet<>(courseMateSkills);
-        return new CourseMate(modelName, modelPhone, modelEmail, modelTelegramHandle, modelSkills, modelRating);
+        return new CourseMate(modelName, modelPhone, modelEmail, modelTelegramHandle, modelSkills, modelRating,
+                isConfirmed);
     }
 }

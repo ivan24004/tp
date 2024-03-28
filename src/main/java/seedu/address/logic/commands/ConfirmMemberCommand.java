@@ -24,15 +24,15 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
  * Confirms that a member has joined a group.
  */
 public class ConfirmMemberCommand extends Command {
-    public static final String COMMAND_WORD = "accept-member";
+    public static final String COMMAND_WORD = "confirm-member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Confirm that a member has joined an existing group"
+            + ": Confirm that a member has joined an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: NAME (group must exist)"
+            + "Parameters: NAME (group must exist) "
             + "[" + PREFIX_COURSEMATE + " COURSEMATE]\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
-            + PREFIX_COURSEMATE + " #1"
+            + PREFIX_COURSEMATE + " #1 "
             + PREFIX_COURSEMATE + " John Doe";
     public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
             "Some of the specified members are not in the group";

@@ -28,7 +28,8 @@ public class MarkImportantCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a group skill to important. "
             + "Parameters: GROUP_NAME"
             + "[" + PREFIX_SKILL + " SKILL]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD
+            + " CS2103T "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 

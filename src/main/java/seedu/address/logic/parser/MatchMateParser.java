@@ -35,6 +35,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkImportantCommand;
 import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.commands.RequireSkillCommand;
+import seedu.address.logic.commands.UnconfirmMemberCommand;
 import seedu.address.logic.commands.UnmarkImportantCommand;
 import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -142,6 +143,9 @@ public class MatchMateParser {
 
         case ConfirmMemberCommand.COMMAND_WORD:
             return new ConfirmMemberCommandParser().parse(arguments);
+
+        case UnconfirmMemberCommand.COMMAND_WORD:
+            return new UnconfirmMemberCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

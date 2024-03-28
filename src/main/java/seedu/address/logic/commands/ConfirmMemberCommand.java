@@ -91,8 +91,9 @@ public class ConfirmMemberCommand extends Command {
         }
         try {
             for (CourseMate courseMate: courseMateList) {
+                CourseMate targetCourseMate = modifiedGroup.findCourseMate(courseMate.getName()).get(0);
                 CourseMate editedCourseMate = confirmCourseMate(courseMate);
-                modifiedGroup.setCourseMate(courseMate, editedCourseMate);
+                modifiedGroup.setCourseMate(targetCourseMate, editedCourseMate);
             }
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
@@ -105,7 +106,7 @@ public class ConfirmMemberCommand extends Command {
                         courseMateList.size()), false, false, true);
     }
 
-    private CourseMate confirmCourseMate(CourseMate target) {
+    private static CourseMate confirmCourseMate(CourseMate target) {
         return new CourseMate(
                 target.getName(),
                 target.getPhone(),

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,9 +11,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.SimilarNameCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
@@ -81,21 +78,24 @@ public class UnconfirmMemberCommand extends Command {
         }
 
         Group modifiedGroup = new Group(toModify);
+        System.out.println("init Group: " + modifiedGroup.asUnmodifiableObservableList());
 
         List<CourseMate> courseMateList = new ArrayList<>();
         int index = 0;
-        for (List<CourseMate> courseMateConfirmList: courseMateSet) {
+        for (List<CourseMate> courseMateUnconfirmList: courseMateSet) {
             //If there are more than 1 matching name
-            if (courseMateConfirmList.size() > 1) {
+            if (courseMateUnconfirmList.size() > 1) {
                 return new SimilarNameCommand(queryableCourseMates.get(index)).execute(model);
             }
-            courseMateList.add(courseMateConfirmList.get(0));
+            courseMateList.add(courseMateUnconfirmList.get(0));
             index += 1;
         }
+
         try {
             for (CourseMate courseMate: courseMateList) {
+                CourseMate targetCourseMate = modifiedGroup.findCourseMate(courseMate.getName()).get(0);
                 CourseMate editedCourseMate = unconfirmCourseMate(courseMate);
-                modifiedGroup.setCourseMate(courseMate, editedCourseMate);
+                modifiedGroup.setCourseMate(targetCourseMate, editedCourseMate);
             }
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
@@ -108,7 +108,7 @@ public class UnconfirmMemberCommand extends Command {
                         courseMateList.size()), false, false, true);
     }
 
-    private CourseMate unconfirmCourseMate(CourseMate target) {
+    private static CourseMate unconfirmCourseMate(CourseMate target) {
         return new CourseMate(
                 target.getName(),
                 target.getPhone(),

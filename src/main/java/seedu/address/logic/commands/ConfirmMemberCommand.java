@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
-import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 
@@ -46,7 +44,7 @@ public class ConfirmMemberCommand extends Command {
 
     /**
      * Basic constructor for {@code ConfirmMemberCommand}.
-     *      * @param queryableCourseMateSet set containing the queryableCourseMate to be added
+     * @param queryableCourseMateSet set containing the queryableCourseMate to be added
      */
     public ConfirmMemberCommand(Name groupName, Set<QueryableCourseMate> queryableCourseMateSet) {
         requireAllNonNull(groupName, queryableCourseMateSet);
@@ -93,15 +91,8 @@ public class ConfirmMemberCommand extends Command {
         }
         try {
             for (CourseMate courseMate: courseMateList) {
-                CourseMate confirmedCourseMate = new CourseMate(
-                        courseMate.getName(),
-                        courseMate.getPhone(),
-                        courseMate.getEmail(),
-                        courseMate.getTelegramHandle(),
-                        courseMate.getSkills(),
-                        courseMate.getRating(),
-                        true);
-                modifiedGroup.setCourseMate(courseMate, confirmedCourseMate);
+                CourseMate editedCourseMate = confirmCourseMate(courseMate);
+                modifiedGroup.setCourseMate(courseMate, editedCourseMate);
             }
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
@@ -112,6 +103,17 @@ public class ConfirmMemberCommand extends Command {
         return new CommandResult(
                 String.format(MESSAGE_SUCCESSFULLY_CONFIRMED, groupName,
                         courseMateList.size()), false, false, true);
+    }
+
+    private CourseMate confirmCourseMate(CourseMate target) {
+        return new CourseMate(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getTelegramHandle(),
+                target.getSkills(),
+                target.getRating(),
+                true);
     }
 
     @Override

@@ -9,6 +9,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
 import static seedu.address.testutil.TypicalCourseMates.BENSON;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
@@ -119,6 +123,20 @@ public class ModelManagerTest {
     public void findCourseMate_byIndexCourseMateInContactList_doesNotThrow() {
         modelManager.addCourseMate(ALICE);
         assertDoesNotThrow(() -> modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(-1))));
+    }
+
+    @Test
+    public void deleteCourseMate_courseMateInGroup_courseMateInGroupDeleted() {
+        CourseMate sampleCourseMate = null;
+        for (CourseMate member: SAMPLE_MEMBER_SET_1) {
+            modelManager.addCourseMate(member);
+            sampleCourseMate = member;
+        }
+        modelManager.addGroup(SAMPLE_GROUP_1);
+
+        modelManager.deleteCourseMate(sampleCourseMate);
+        assertTrue(!modelManager.hasCourseMate(sampleCourseMate)
+                && !modelManager.findGroup(SAMPLE_GROUP_NAME_1).contains(sampleCourseMate));
     }
 
     @Test

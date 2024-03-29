@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
@@ -87,6 +88,17 @@ public class GroupList implements ReadOnlyGroupList {
      */
     public Group findGroup(Name name) {
         return groups.findGroup(name);
+    }
+
+    /**
+     * Deletes a {@code CourseMate} from all the {@code Group} objects.
+     */
+    public void removeCourseMate(CourseMate courseMate) {
+        for (Group group: groups) {
+            if (group.contains(courseMate)) {
+                group.remove(courseMate);
+            }
+        }
     }
 
     //// util methods

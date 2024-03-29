@@ -23,7 +23,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 /**
  * Confirms that a member has joined a group.
  */
-public class ConfirmMemberCommand extends Command {
+public class ConfirmMemberCommand extends ConfirmCommandUtils {
     public static final String COMMAND_WORD = "confirm-member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -34,8 +34,6 @@ public class ConfirmMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_COURSEMATE + " #1 "
             + PREFIX_COURSEMATE + " John Doe";
-    public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
-            "Some of the specified members are not in the group";
     public static final String MESSAGE_SUCCESSFULLY_CONFIRMED = "Group successfully modified, Name: %1$s\n"
             + "%2$s status of members have been confirmed!";
 
@@ -55,66 +53,8 @@ public class ConfirmMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<List<CourseMate>> courseMateSet;
-        List<QueryableCourseMate> queryableCourseMates = new ArrayList<>();
-        for (QueryableCourseMate q : queryableCourseMateSet) {
-            queryableCourseMates.add(q);
-        }
-
-        try {
-            courseMateSet = queryableCourseMateSet
-                    .stream()
-                    .map(model::findCourseMate)
-                    .collect(Collectors.toSet());
-        } catch (CourseMateNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_MEMBERS_DONT_EXIST, e);
-        }
-
-        Group toModify;
-        try {
-            toModify = model.findGroup(groupName);
-        } catch (GroupNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
-        }
-
-        Group modifiedGroup = new Group(toModify);
-
-        List<CourseMate> courseMateList = new ArrayList<>();
-        int index = 0;
-        for (List<CourseMate> courseMateConfirmList: courseMateSet) {
-            //If there are more than 1 matching name
-            if (courseMateConfirmList.size() > 1) {
-                return new SimilarNameCommand(queryableCourseMates.get(index)).execute(model);
-            }
-            courseMateList.add(courseMateConfirmList.get(0));
-            index += 1;
-        }
-        try {
-            for (CourseMate courseMate: courseMateList) {
-                CourseMate targetCourseMate = modifiedGroup.findCourseMate(courseMate.getName()).get(0);
-                CourseMate editedCourseMate = confirmCourseMate(courseMate);
-                modifiedGroup.setCourseMate(targetCourseMate, editedCourseMate);
-            }
-        } catch (CourseMateNotFoundException e) {
-            throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
-        }
-
-        model.setGroup(toModify, modifiedGroup);
-        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESSFULLY_CONFIRMED, groupName,
-                        courseMateList.size()), false, false, true);
-    }
-
-    private static CourseMate confirmCourseMate(CourseMate target) {
-        return new CourseMate(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getTelegramHandle(),
-                target.getSkills(),
-                target.getRating(),
-                true);
+        return ConfirmCommandUtils.execute(model, groupName, queryableCourseMateSet,
+                true, MESSAGE_SUCCESSFULLY_CONFIRMED);
     }
 
     @Override

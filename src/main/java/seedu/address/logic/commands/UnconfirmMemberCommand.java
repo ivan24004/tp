@@ -23,7 +23,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 /**
  * Un-confirms that a member is no longer not confirmed to be in a group.
  */
-public class UnconfirmMemberCommand extends Command {
+public class UnconfirmMemberCommand extends ConfirmCommandUtils {
     public static final String COMMAND_WORD = "unconfirm-member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -34,9 +34,7 @@ public class UnconfirmMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_COURSEMATE + " #1 "
             + PREFIX_COURSEMATE + " John Doe";
-    public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
-            "Some of the specified members are not in the group";
-    public static final String MESSAGE_SUCCESSFULLY_CONFIRMED = "Group successfully modified, Name: %1$s\n"
+    public static final String MESSAGE_SUCCESSFULLY_UNCONFIRMED = "Group successfully modified, Name: %1$s\n"
             + "%2$s status of members have been set to not confirmed!";
 
     private final Set<QueryableCourseMate> queryableCourseMateSet;
@@ -55,68 +53,8 @@ public class UnconfirmMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<List<CourseMate>> courseMateSet;
-        List<QueryableCourseMate> queryableCourseMates = new ArrayList<>();
-        for (QueryableCourseMate q : queryableCourseMateSet) {
-            queryableCourseMates.add(q);
-        }
-
-        try {
-            courseMateSet = queryableCourseMateSet
-                    .stream()
-                    .map(model::findCourseMate)
-                    .collect(Collectors.toSet());
-        } catch (CourseMateNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_MEMBERS_DONT_EXIST, e);
-        }
-
-        Group toModify;
-        try {
-            toModify = model.findGroup(groupName);
-        } catch (GroupNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
-        }
-
-        Group modifiedGroup = new Group(toModify);
-        System.out.println("init Group: " + modifiedGroup.asUnmodifiableObservableList());
-
-        List<CourseMate> courseMateList = new ArrayList<>();
-        int index = 0;
-        for (List<CourseMate> courseMateUnconfirmList: courseMateSet) {
-            //If there are more than 1 matching name
-            if (courseMateUnconfirmList.size() > 1) {
-                return new SimilarNameCommand(queryableCourseMates.get(index)).execute(model);
-            }
-            courseMateList.add(courseMateUnconfirmList.get(0));
-            index += 1;
-        }
-
-        try {
-            for (CourseMate courseMate: courseMateList) {
-                CourseMate targetCourseMate = modifiedGroup.findCourseMate(courseMate.getName()).get(0);
-                CourseMate editedCourseMate = unconfirmCourseMate(courseMate);
-                modifiedGroup.setCourseMate(targetCourseMate, editedCourseMate);
-            }
-        } catch (CourseMateNotFoundException e) {
-            throw new CommandException(MESSAGE_MEMBERS_NOT_IN_GROUP, e);
-        }
-
-        model.setGroup(toModify, modifiedGroup);
-        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESSFULLY_CONFIRMED, groupName,
-                        courseMateList.size()), false, false, true);
-    }
-
-    private static CourseMate unconfirmCourseMate(CourseMate target) {
-        return new CourseMate(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getTelegramHandle(),
-                target.getSkills(),
-                target.getRating(),
-                false);
+        return ConfirmCommandUtils.execute(model, groupName, queryableCourseMateSet,
+                false, MESSAGE_SUCCESSFULLY_UNCONFIRMED);
     }
 
     @Override

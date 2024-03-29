@@ -20,7 +20,7 @@ public class RateMateCommandParserTest {
     private RateMateCommandParser parser = new RateMateCommandParser();
 
     @Test
-    public void parse_invalidPreabmle_failure() {
+    public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "#-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
@@ -31,16 +31,13 @@ public class RateMateCommandParserTest {
     @Test
     public void parse_invalidArgs_returnsParseException() {
         // empty input
-        assertParseFailure(parser, "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateMateCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
         // missing coursemate
-        assertParseFailure(parser, "-r 4",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateMateCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-r 4", MESSAGE_INVALID_FORMAT);
 
         // missing prefix
-        assertParseFailure(parser, "Alex 4",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateMateCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Alex 4", MESSAGE_INVALID_FORMAT);
 
         // invalid rating
         assertParseFailure(parser, "Alex -r 10", Rating.MESSAGE_CONSTRAINTS);

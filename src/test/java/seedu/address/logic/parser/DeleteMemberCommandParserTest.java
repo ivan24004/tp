@@ -26,11 +26,11 @@ public class DeleteMemberCommandParserTest {
         DeleteMemberCommand targetCommand = new DeleteMemberCommand(groupName1, courseMates1);
         assertParseSuccess(parser, "group 1 -cm Bob", targetCommand);
 
-        Name groupName2 = new Name("group 1");
+        Name groupName2 = new Name("group 2");
         Set<QueryableCourseMate> courseMates2 = new HashSet<>(List.of(
                 new QueryableCourseMate(new Name("Bob")),
                 new QueryableCourseMate(new Name("Alice"))));
-        assertParseSuccess(parser, "group 1 -cm Bob -cm Alice",
+        assertParseSuccess(parser, "group 2 -cm Bob -cm Alice",
                 new DeleteMemberCommand(groupName2, courseMates2));
     }
 

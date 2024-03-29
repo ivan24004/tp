@@ -109,6 +109,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteCourseMate(CourseMate target) {
         contactList.removeCourseMate(target);
+        groupList.removeCourseMate(target);
     }
 
     @Override

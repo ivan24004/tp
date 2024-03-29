@@ -68,7 +68,9 @@ public class RateMateCommand extends Command {
                 courseMateToRate.getEmail(),
                 courseMateToRate.getTelegramHandle(),
                 courseMateToRate.getSkills(),
-                rating);
+                rating,
+                courseMateToRate.getIsConfirmed()
+        );
 
         model.setCourseMate(courseMateToRate, ratedCourseMate);
         model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);

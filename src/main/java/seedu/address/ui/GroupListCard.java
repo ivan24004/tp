@@ -9,6 +9,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.group.Group;
 
 /**
@@ -54,7 +55,7 @@ public class GroupListCard extends UiPart<Region> {
         }
         group.asUnmodifiableObservableList().stream()
                 .sorted(Comparator.comparing(courseMate -> courseMate.getName().fullName))
-                .forEach(courseMate -> groupMembers.getChildren().add(new Label(courseMate.getName().fullName)));
+                .forEach(courseMate -> groupMembers.getChildren().add(confirmedMemberLabel(courseMate)));
 
         group.completedSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
@@ -65,6 +66,18 @@ public class GroupListCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(skill -> skill.skillName))
                 .forEach(skill -> uncompletedGroupSkills.getChildren()
                         .add(new Label(skill.importantStringRepresentation() + skill.skillName)));
+    }
+
+    private Label confirmedMemberLabel(CourseMate courseMate) {
+        String displayName = courseMate.getName().fullName;
+        String id = "confirmedMember";
+        if (!courseMate.getIsConfirmed()) {
+            displayName = "[?] " + displayName;
+            id = "unknownMember";
+        }
+        Label courseMateLabel = new Label(displayName);
+        courseMateLabel.setId(id);
+        return courseMateLabel;
     }
 
     /**

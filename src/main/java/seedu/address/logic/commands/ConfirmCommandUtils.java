@@ -21,7 +21,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 /**
  * Utility class that abstracts out the execution of (un)confirm-member command.
  */
-public abstract class ConfirmCommandUtils extends Command {
+public abstract class ConfirmCommandUtils {
     public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
             "Some of the specified members are not in the group";
     public static final String MESSAGE_SUCCESS = "Group successfully modified, Name: %1$s\n"
@@ -47,7 +47,7 @@ public abstract class ConfirmCommandUtils extends Command {
      */
     public static CommandResult execute(
             Model model, Name groupName, Set<QueryableCourseMate> queryableCourseMateSet,
-            boolean isConfirmed, String message_success) throws CommandException {
+            boolean isConfirmed, String messageSuccess) throws CommandException {
         requireAllNonNull(model, groupName, queryableCourseMateSet);
         Set<List<CourseMate>> courseMateSet;
         List<QueryableCourseMate> queryableCourseMates = new ArrayList<>(queryableCourseMateSet);
@@ -93,7 +93,7 @@ public abstract class ConfirmCommandUtils extends Command {
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(
-                String.format(message_success, groupName,
+                String.format(messageSuccess, groupName,
                         courseMateList.size()), false, false, true);
     }
 }

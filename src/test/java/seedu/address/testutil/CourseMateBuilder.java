@@ -27,7 +27,6 @@ public class CourseMateBuilder {
     private Email email;
     private TelegramHandle telegramHandle;
     private Rating rating;
-    private boolean isConfirmed;
     private Set<Skill> skills;
 
     /**
@@ -40,7 +39,6 @@ public class CourseMateBuilder {
         telegramHandle = null;
         skills = new HashSet<>();
         rating = new Rating("0");
-        isConfirmed = false;
     }
 
     /**
@@ -123,17 +121,8 @@ public class CourseMateBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code isConfirmed} of the {@code CourseMate} that we are building.
-     */
-    public CourseMateBuilder withIsConfirmed(boolean isConfirmed) {
-        this.isConfirmed = isConfirmed;
-        return this;
-    }
-
-
     public CourseMate build() {
-        return new CourseMate(name, phone, email, telegramHandle, skills, rating, isConfirmed);
+        return new CourseMate(name, phone, email, telegramHandle, skills, rating);
     }
 
 }

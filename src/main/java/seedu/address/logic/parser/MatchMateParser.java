@@ -19,7 +19,6 @@ import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSkillCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ConfirmMemberCommand;
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
@@ -36,7 +35,6 @@ import seedu.address.logic.commands.MarkImportantCommand;
 import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.commands.RequireSkillCommand;
 import seedu.address.logic.commands.SuggestMateCommand;
-import seedu.address.logic.commands.UnconfirmMemberCommand;
 import seedu.address.logic.commands.UnmarkImportantCommand;
 import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -141,12 +139,6 @@ public class MatchMateParser {
 
         case RateMateCommand.COMMAND_WORD:
             return new RateMateCommandParser().parse(arguments);
-
-        case ConfirmMemberCommand.COMMAND_WORD:
-            return new ConfirmMemberCommandParser().parse(arguments);
-
-        case UnconfirmMemberCommand.COMMAND_WORD:
-            return new UnconfirmMemberCommandParser().parse(arguments);
 
         case SuggestMateCommand.COMMAND_WORD:
             return new SuggestMateCommandParser().parse(arguments);

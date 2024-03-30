@@ -14,7 +14,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSkillCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ConfirmMemberCommand;
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMemberCommand;
@@ -30,7 +29,6 @@ import seedu.address.logic.commands.MarkImportantCommand;
 import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.commands.RequireSkillCommand;
 import seedu.address.logic.commands.SuggestMateCommand;
-import seedu.address.logic.commands.UnconfirmMemberCommand;
 import seedu.address.logic.commands.UnmarkImportantCommand;
 import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -191,18 +189,6 @@ public class MatchMateParserTest {
     public void parseCommand_unrequireSkill() throws Exception {
         assertTrue(parser.parseCommand(UnrequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
                 instanceof UnrequireSkillCommand);
-    }
-
-    @Test
-    public void parseCommand_confirmMember() throws Exception {
-        assertTrue(parser.parseCommand(ConfirmMemberCommand.COMMAND_WORD + " Group 1 -cm Bob")
-                instanceof ConfirmMemberCommand);
-    }
-
-    @Test
-    public void parseCommand_unconfirmMember() throws Exception {
-        assertTrue(parser.parseCommand(UnconfirmMemberCommand.COMMAND_WORD + " Group 1 -cm Bob")
-                instanceof UnconfirmMemberCommand);
     }
 
     @Test

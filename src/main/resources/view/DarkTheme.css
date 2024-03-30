@@ -370,18 +370,25 @@
 
 =======
 #copyButton {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: white;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: darkgray;
 }
 
 #copyButton:armed {
     -fx-background-color: darkgray;
 }
 
+.scroll-pane{
+    -fx-background-color:transparent;
+ }
+
+ .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}

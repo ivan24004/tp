@@ -121,8 +121,8 @@ public class ModelManager implements Model {
     @Override
     public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
         requireAllNonNull(target, editedCourseMate);
-
         contactList.setCourseMate(target, editedCourseMate);
+        groupList.setCourseMate(target, editedCourseMate);
     }
 
     //=========== GroupList ================================================================================

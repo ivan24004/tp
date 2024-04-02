@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -94,9 +95,22 @@ public class GroupList implements ReadOnlyGroupList {
      * Deletes a {@code CourseMate} from all the {@code Group} objects.
      */
     public void removeCourseMate(CourseMate courseMate) {
+        requireNonNull(courseMate);
         for (Group group: groups) {
             if (group.contains(courseMate)) {
                 group.remove(courseMate);
+            }
+        }
+    }
+
+    /**
+     * Edits a {@code CourseMate} from all the {@code Group} objects.
+     */
+    public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
+        requireAllNonNull(target, editedCourseMate);
+        for (Group group: groups) {
+            if (group.contains(target)) {
+                group.setCourseMate(target, editedCourseMate);
             }
         }
     }

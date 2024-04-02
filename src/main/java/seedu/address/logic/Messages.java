@@ -23,7 +23,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_SIMILAR_COURSE_MATE_NAME = "There are %1$d course mates with "
             + "name containing %2$s \n"
-            + "Retry the command by specifying the index of the contact in the list, example: “#1”.";
+            + "You can retry by giving the course mate's complete name or use the index of the contact \n"
+            + "example: “delete #1” to delete the 1st contact in the current list";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

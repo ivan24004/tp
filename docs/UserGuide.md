@@ -51,7 +51,7 @@ The UI consists of four main components:
 
 You can use the <kbd>Tab</kbd> key to switch between the command box and the coursemate list panel. You can also press <kbd>Enter</kbd> to select a coursemate from the coursemate list panel. The selected coursemate will be displayed in the coursemate detail panel.
 
-In the command box, you can use the <kbd>:fas-up:</kbd> and <kbd>:fas-down</kbd> arrow keys to navigate through your command history.
+In the command box, you can use the <kbd>:fas-caret-up:</kbd> and <kbd>:fas-caret-down:</kbd> arrow keys to navigate through your command history.
 
 <box type="tip" seamless>
 

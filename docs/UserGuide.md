@@ -21,7 +21,7 @@ It is optimized for Command Line Interface space(CLI) while still having the ben
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -44,26 +44,22 @@ The UI consists of four main components:
 
 ![Ui Components](images/ui-structure.png)
 
-1. **Command Box**<br>
-   You can type your commands here and press Enter to execute them.
-2. **CourseMate List Panel**<br>
-   Displays the list of courseMates.
-3. **CourseMate Detail Panel**<br>
-   Displays the details of a selected courseMate.
-4. **Group List Panel**<br>
-   Displays the list of groups.
+1. **Command Box**: You can type your commands here and press <kbd>Enter</kbd> to execute them.
+2. **CourseMate List Panel**: Displays the list of courseMates.
+3. **CourseMate Detail Panel**: Displays the details of a selected courseMate.
+4. **Group List Panel**: Displays the list of groups.
 
-You can use the TAB key to switch between the command box and the coursemate list panel. You can also press ENTER to select a coursemate from the coursemate list panel. The selected coursemate will be displayed in the coursemate detail panel.
+You can use the <kbd>Tab</kbd> key to switch between the command box and the coursemate list panel. You can also press <kbd>Enter</kbd> to select a coursemate from the coursemate list panel. The selected coursemate will be displayed in the coursemate detail panel.
 
-In the command box, you can use the UP and DOWN arrow keys to navigate through your command history.
+In the command box, you can use the <kbd>:fas-up:</kbd> and <kbd>:fas-down</kbd> arrow keys to navigate through your command history.
 
 <box type="tip" seamless>
 
-**Example**: If you want to add a few selected coursemates to a group, you can:
-1. Select the first coursemate in the coursemate list panel and press ENTER. The coursemate will be displayed in the coursemate detail panel.
-2. Type `add-member GROUP_NAME -cm ##` in the command box and press ENTER.
-3. Press TAB to switch to the coursemate list panel. Select the next coursemate and press ENTER.
-4. Press TAB to switch back to the command box and press UP to retrieve the previous command. Press ENTER to execute the command.
+<span class="badge rounded-pill bg-secondary">Example</span> If you want to add a few selected coursemates to a group, you can:
+1. Select the first coursemate in the coursemate list panel and press <kbd>Enter</kbd>. The coursemate will be displayed in the coursemate detail panel.
+2. Type `add-member GROUP_NAME -cm ##` in the command box and press <kbd>Enter</kbd>.
+3. Press <kbd>Tab</kbd> to switch to the coursemate list panel. Select the next coursemate and press <kbd>Enter</kbd>.
+4. Press <kbd>Tab</kbd> to switch back to the command box and press UP to retrieve the previous command. Press <kbd>Enter</kbd> to execute the command.
 5. Repeat steps 3 and 4 for the remaining coursemates.
 
 This way, you can quickly add multiple coursemates to a group without having to type the coursemate names each time.

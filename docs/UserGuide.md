@@ -291,18 +291,18 @@ Examples:
 - `delete-member CS2103T G18 -cm Ivan -cm #1`
 - `delete-member CS2103T G18 -cm ##`
 
-### Edit the telegram chat URL of a group: `edit-group`
+### Edit the telegram chat URL of a group: `edit-tg-chat-url`
 
 Edits the telegram chat URL of a group.
 
-Format: `edit-group GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]`
+Format: `edit-tg-chat-url GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
 - `NEW_TELEGRAM_CHAT_URL`: New URL of the Telegram chat for the group. Accepts strings that start with `https://t.me/` and followed by alphanumeric characters and the special characters `+`, `-` and `_`.
 
 Examples:
-- `edit-group CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
+- `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
 
 
 ### Delete a group: `delete-group`
@@ -373,7 +373,7 @@ Action     | Format, Examples
 **Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
 **Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
 **Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-t NEW_TELEGRAM_HANDLE]​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
-**Edit group**    | `edit-group GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]` <br> e.g., `edit-group CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
+**Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Find**   | `find KEYWORD`<br> e.g., `find John`
 **List**   | `list`
 **Help**   | `help`

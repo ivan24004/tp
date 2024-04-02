@@ -15,7 +15,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
  * Edits the telegram chat of a preexisting group.
  */
 public class EditGroupCommand extends Command {
-    public static final String COMMAND_WORD = "edit-group";
+    public static final String COMMAND_WORD = "edit-tg-chat-url";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the telegram chat of a preexisting group. "
             + "groups can be specified by name.\n"

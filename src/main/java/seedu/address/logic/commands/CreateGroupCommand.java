@@ -28,7 +28,7 @@ public class CreateGroupCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a group containing any number of CourseMates, "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: NAME (cannot be empty, must be unique, and must be only alphanumeric) "
-            + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "] "
+            + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]... "
             + "[" + PREFIX_TELEGRAM + " TELEGRAM_CHAT_URL" + "]\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_COURSEMATE + " #1 "

@@ -25,7 +25,7 @@ public class RateMateCommand extends Command {
             + ": Rate a coursemate by a number between 0 to 5, where 0 means no rating is given. "
             + "NAME can be specified either by full name or by the '#' notation.\n"
             + "Parameters: NAME "
-            + "[" + PREFIX_RATING + " RATING]\n"
+            + PREFIX_RATING + " RATING\n"
             + "Example: " + COMMAND_WORD + " #1 "
             + PREFIX_RATING + " 4";
 

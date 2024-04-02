@@ -28,7 +28,7 @@ public class UnrequireSkillCommand extends Command {
             + ": Removes required skills to an already existing group. "
             + "Parameters: NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
-            + "[" + PREFIX_SKILL + " SKILL" + "]\n"
+            + "[" + PREFIX_SKILL + " SKILL" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";

@@ -38,7 +38,7 @@ public class DeleteMemberCommand extends Command {
     public static final String MESSAGE_MEMBERS_NOT_IN_GROUP =
             "Some of the specified members are not in the group.";
     public static final String MESSAGE_SUCCESFULLY_REMOVED = "Group successfully modified, Name: %1$s\n"
-            + "%2$s members have been deleted from the group!";
+            + "%2$s member(s) have been deleted from the group!";
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
 

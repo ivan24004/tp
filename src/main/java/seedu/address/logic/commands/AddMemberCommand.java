@@ -38,7 +38,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_MEMBERS_ALREADY_IN_GROUP =
             "Some of the specified members are already in the group.";
     public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
-            + "%2$s new members have been added to the group!";
+            + "%2$s new member(s) have been added to the group!";
 
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;

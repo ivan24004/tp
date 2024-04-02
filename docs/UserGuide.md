@@ -59,7 +59,7 @@ In the command box, you can use the <kbd>:fas-caret-up:</kbd> and <kbd>:fas-care
 1. Select the first coursemate in the coursemate list panel and press <kbd>Enter</kbd>. The coursemate will be displayed in the coursemate detail panel.
 2. Type `add-member GROUP_NAME -cm ##` in the command box and press <kbd>Enter</kbd>.
 3. Press <kbd>Tab</kbd> to switch to the coursemate list panel. Select the next coursemate and press <kbd>Enter</kbd>.
-4. Press <kbd>Tab</kbd> to switch back to the command box and press UP to retrieve the previous command. Press <kbd>Enter</kbd> to execute the command.
+4. Press <kbd>Tab</kbd> to switch back to the command box and press <kbd>:fas-caret-up:</kbd> to retrieve the previous command. Press <kbd>Enter</kbd> to execute the command.
 5. Repeat steps 3 and 4 for the remaining coursemates.
 
 This way, you can quickly add multiple coursemates to a group without having to type the coursemate names each time.

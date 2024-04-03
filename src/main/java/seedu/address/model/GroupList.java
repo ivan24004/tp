@@ -3,9 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
@@ -96,10 +98,17 @@ public class GroupList implements ReadOnlyGroupList {
      */
     public void removeCourseMate(CourseMate courseMate) {
         requireNonNull(courseMate);
+        List<Pair<Group, Group>> edits = new ArrayList<>();
         for (Group group: groups) {
             if (group.contains(courseMate)) {
-                group.remove(courseMate);
+                Group newGroup = new Group(group);
+                newGroup.remove(courseMate);
+                edits.add(new Pair<>(group, newGroup));
             }
+        }
+
+        for (Pair<Group, Group> edit: edits) {
+            setGroup(edit.getKey(), edit.getValue());
         }
     }
 
@@ -108,10 +117,18 @@ public class GroupList implements ReadOnlyGroupList {
      */
     public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
         requireAllNonNull(target, editedCourseMate);
+
+        List<Pair<Group, Group>> edits = new ArrayList<>();
         for (Group group: groups) {
             if (group.contains(target)) {
-                group.setCourseMate(target, editedCourseMate);
+                Group newGroup = new Group(group);
+                newGroup.setCourseMate(target, editedCourseMate);
+                edits.add(new Pair<>(group, newGroup));
             }
+        }
+
+        for (Pair<Group, Group> edit: edits) {
+            setGroup(edit.getKey(), edit.getValue());
         }
     }
 

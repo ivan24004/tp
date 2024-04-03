@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class DeleteCommand extends Command {
         CourseMate courseMateToDelete = courseMateToDeleteList.get(0);
         model.deleteCourseMate(courseMateToDelete);
         model.setRecentlyProcessedCourseMate(courseMateToDelete);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);
     }
 

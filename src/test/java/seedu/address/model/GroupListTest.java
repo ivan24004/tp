@@ -55,6 +55,7 @@ public class GroupListTest {
                 .getPhone(),
                 new Phone(newPhone));
 
+        SAMPLE_GROUP_1.setCourseMate(oldCourseMate, newCourseMate);
         groupList.removeGroup(SAMPLE_GROUP_1);
         SAMPLE_GROUP_1.remove(
                 SAMPLE_GROUP_1.findCourseMate(IDA.getName()).get(0));

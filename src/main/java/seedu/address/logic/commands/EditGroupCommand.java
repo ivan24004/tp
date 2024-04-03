@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -48,7 +49,7 @@ public class EditGroupCommand extends Command {
                     groupToEdit.asUnmodifiableObservableList(), groupToEdit.getSkills(), telegramChat);
 
             model.setGroup(groupToEdit, editedGroup);
-
+            model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
             return new CommandResult(String.format("Edited group %s",
                     toModify));
         } catch (GroupNotFoundException exception) {

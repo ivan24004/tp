@@ -38,7 +38,8 @@ public class AddSkillCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Skill(s) successfully added";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
+            + "Consider adding a suffix to disambiguate";
 
     private final QueryableCourseMate queryableCourseMate;
     private final AddSkillDescriptor addSkillDescriptor;

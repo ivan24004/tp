@@ -129,6 +129,12 @@ public class AddCommandParserTest {
         CourseMate expectedCourseMate = new CourseMateBuilder(AMY).withSkills().build();
         assertParseSuccess(parser, VALID_NAME_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddCommand(expectedCourseMate));
+
+        // missing phone
+        expectedCourseMate = new CourseMateBuilder().withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB).withPhone("").withSkills().build();
+        assertParseSuccess(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,
+                new AddCommand(expectedCourseMate));
     }
 
     @Test
@@ -137,10 +143,6 @@ public class AddCommandParserTest {
 
         // missing name
         assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB + VALID_PHONE_BOB,
                 expectedMessage);
 
         // missing email prefix

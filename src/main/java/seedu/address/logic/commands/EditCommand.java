@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "NAME can be specified either by partial name (substrings allowed) or by the '#' notation.\n"
             + "Parameters: NAME "
             + "[" + PREFIX_NAME + " NEW_NAME] "
-            + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
             + "[" + PREFIX_EMAIL + " NEW_EMAIL] "
+            + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
             + "[" + PREFIX_TELEGRAM + " NEW_TELEGRAM_HANDLE]\n"
             + "Example: " + COMMAND_WORD + " John Doe "
-            + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com";
+            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_PHONE + " 91234567 ";
 
     public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

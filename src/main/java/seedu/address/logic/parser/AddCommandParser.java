@@ -33,6 +33,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_SKILL);
 
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
         try {
             argMultimap = setPreambleAsName(argMultimap);
         } catch (ParseException e) {
@@ -69,8 +74,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     /**
      * Isolates the preamble of the {@code argsString} and set is as the name argument of the command.
-     *
-     * @param argsString   Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
      * @param argMultimap  ArgumentMultimap object that maps prefixes to their arguments
      * @return             ArgumentMultimap object that maps the name prefix to the name argument
      */

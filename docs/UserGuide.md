@@ -181,19 +181,20 @@ Examples:
 - `edit John -p 98765432 -e johndoe@gmail.com`
 
 ### Add a skill to a contact : `add-skill`
-Adds a list of skills to a contact.
+Adds a list of skills to a contact. Adding a skill that already exists in the courseMate
+will still succeed, but it won't show duplicate skills.
+
 
 Format: `add-skill COURSENAME [-s SKILL]...`
 
 Parameters:
-- `COURSENAME`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
-- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character.
+- `COURSENAME`: Name of the existing courseMate. Accepts aliases (substrings or in hashtag (#) notation).
+- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
+Different capitalization are considered as different skills.
 
 Examples:
 - `add-skill John Doe -s C++ -s Leadership`
-- `add-skill ##`
 
-  This command does nothing but it will be executed successfully.
   
 ### Delete a skill from a contact  : `delete-skill`
 Deletes a list of skills from a contact.
@@ -206,9 +207,6 @@ Parameters:
 
 Examples:
 - `delete-skill John Doe -s C++ -s Leadership`
-- `delete-skill ##`
-
-    This command does nothing but it will be executed successfully.
 
 ### Search courseMates with keywords: `find-mate`
 
@@ -256,17 +254,19 @@ Examples:
 
 Creates a group project. You can specify the coursemates in the group when creating the group, or choose to add them later.
 
-Format: `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]...`
+Format: `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]... [-s SKILL]...`
 
 Parameters:
 - `GROUP_NAME`: The group name. Accepts any strings, except that words cannot start with the hyphen (-) character.
 - `TELEGRAM_CHAT_URL` (optional): The URL of the Telegram chat for the group. Accepts strings that start with `https://t.me/` and followed by alphanumeric characters and the special characters `+`, `-` and `_`.
 - `COURSEMATE` (zero or multiple allowed): Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
+- `SKILL` (zero or multiple allowed): Required skill(s) of the group. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Examples:
 - `create-group CS2103T G18`
 - `create-group CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
-- `create-group CS2103T G18 -cm John -cm #2`
+- `create-group CS2103T G18 -cm John -cm #2 -s C++ -s Java`
+- `create-group CS2103T G18 -cm John -s C++ -s Java -cm #2 -t https://t.me/+WDTg34uuUlH8Ml2d`
 
 ### Add coursemates to group: `add-member`
 Adds some team members to an existing group.
@@ -325,6 +325,58 @@ Parameters:
 
 Examples:
 - `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
+
+### Require skills in a group: `require-skill`
+
+Add skills that should be required or necessary for the group. You only need  member that possesses the skill for it to be marked as fulfilled. Fulfilled skills are marked in green while unfulfilled ones are marked in red.
+
+Format: `require-skill GROUP_NAME -s SKILL [-s SKILL]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `SKILL` (one or multiple allowed): Required skill(s) of the group. Accepts any strings, except that words cannot start with the hyphen (-) character.
+
+Examples:
+- `require-skill CS2103T G18 -s C++ -s Java`
+
+### Unrequire skills in a group: `unrequire-skill`
+
+Mark skills that are no longer required or necessary for the group.
+
+Format: `require-skill GROUP_NAME -s SKILL [-s SKILL]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `SKILL` (one or multiple allowed): Skill(s) to be marked as no longer required in the group. Accepts any strings, except that words cannot start with the hyphen (-) character.
+
+Examples:
+- `unrequire-skill CS2103T G18 -s C++ -s Java`
+
+### Mark important skills in a group: `mark-important`
+
+Mark skills that are considered as important in the group. Important skills are signified with a [!] notation.
+
+Format: `mark-important GROUP_NAME -s SKILL [-s SKILL]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `SKILL` (one or multiple allowed): Skill(s) to be marked as no longer required in the group. Accepts any strings, except that words cannot start with the hyphen (-) character.
+
+Examples:
+- `mark-important CS2103T G18 -s C++ -s Java`
+- 
+### Unmark important skills in a group: `unmark-important`
+
+Mark skills that are no longer considered as important in the group. 
+
+Format: `unmark-important GROUP_NAME -s SKILL [-s SKILL]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `SKILL` (one or multiple allowed): Skill(s) to be marked as no longer required in the group. Accepts any strings, except that words cannot start with the hyphen (-) character.
+
+Examples:
+- `unmark-important CS2103T G18 -s C++ -s Java`
 
 
 ### Delete a group: `delete-group`
@@ -389,7 +441,7 @@ Action     | Format, Examples
 **Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
 **Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
 **Clear**  | `clear`
-**Create group**    |   `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]...` <br> e.g., `create-group CS2103T G18 -cm John -cm #2`
+**Create group**    |   `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]... [-s SKILL]...` <br> e.g., `create-group CS2103T G18 -cm John -s C++ -s Java -cm #2 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Delete coursemate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
 **Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
@@ -397,5 +449,9 @@ Action     | Format, Examples
 **Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-t NEW_TELEGRAM_HANDLE]​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
 **Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Find**   | `find KEYWORD`<br> e.g., `find John`
-**List**   | `list`
 **Help**   | `help`
+**List**   | `list`
+**Mark skill important in group**   | `mark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `mark-important CS2103T G18 -s C++ -s Java`
+**Unmark skill important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
+**Require skill in group**    | `require-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `require-skill CS2103T G18 -s C++ -s Java`
+**Unrequire skill in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`

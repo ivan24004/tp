@@ -135,6 +135,10 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
+        // missing name
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                expectedMessage);
+
         // missing phone prefix
         assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB + VALID_PHONE_BOB,
                 expectedMessage);
@@ -150,10 +154,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // missing name
-        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
-
         // invalid name
         assertParseFailure(parser, INVALID_NAME_AMPERSAND + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + SKILL_DESC_JAVA + SKILL_DESC_CPP, Name.MESSAGE_CONSTRAINTS);

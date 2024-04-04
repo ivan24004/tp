@@ -6,11 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
@@ -23,14 +25,15 @@ public class RequireSkillCommand extends Command {
     public static final String COMMAND_WORD = "require-skill";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds required skills to an already existing group. "
-            + "Parameters: NAME (group must exist) "
+            + "Parameters: GROUP_NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
-            + "%2$s skills are now required for the group!";
+
+    public static final String MESSAGE_SUCCESSFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+            + "%2$s skill(s) are now required for the group!";
 
     private final Name groupName;
     private final Set<Skill> skillSet;
@@ -55,10 +58,11 @@ public class RequireSkillCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
+        Set<Skill> newSkills = getNewSkills(model);
+
         Set<Skill> modifiedSkillSet = new HashSet<>(toModify.getSkills());
-        for (Skill skill: skillSet) {
-            modifiedSkillSet.add(skill);
-        }
+        modifiedSkillSet.addAll(skillSet);
+
         Group modifiedGroup = new Group(
                 toModify.getName(),
                 toModify.asUnmodifiableObservableList(),
@@ -67,8 +71,58 @@ public class RequireSkillCommand extends Command {
 
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName,
+        return new CommandResult(messageNewSkill(newSkills) + String.format(MESSAGE_SUCCESSFULLY_ADDED, groupName,
                 modifiedGroup.getSkills().size()), false, false, true);
+    }
+
+    /**
+     * Creates a warning message for newly added skills that are not in the database.
+     * @param newSkills - The set of skills that are new to the courseMate list.
+     * @return A String containing the warning message.
+     */
+    public static String messageNewSkill(Set<Skill> newSkills) {
+        if (newSkills.size() == 0) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("WARNING: New skills detected. Please verify for accuracy to avoid any unintended actions: ");
+        int size = newSkills.size();
+        int count = 0;
+        for (Skill skill : newSkills) {
+            sb.append(skill.toString());
+            count++;
+            if (count < size) {
+                sb.append(", ");
+            } else {
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    /** Retrieves the newly added skills not in the current courseMate list and group list. */
+    private Set<Skill> getNewSkills(Model model) {
+        List<CourseMate> getCourseMateList = model.getContactList().getCourseMateList();
+        Set<Skill> currentSkills = new HashSet<>();
+        for (CourseMate courseMate : getCourseMateList) {
+            Set<Skill> courseMateSkills = courseMate.getSkills();
+            currentSkills.addAll(courseMateSkills);
+        }
+
+        List<Group> getGroupList = model.getGroupList().getGroupList();
+        for (Group group : getGroupList) {
+            Set<Skill> groupSkills = group.getSkills();
+            currentSkills.addAll(groupSkills);
+        }
+
+        Set<Skill> newSkills = new HashSet<>();
+        for (Skill skill : this.skillSet) {
+            if (!currentSkills.contains(skill)) {
+                newSkills.add(skill);
+            }
+        }
+        return newSkills;
     }
 
     @Override

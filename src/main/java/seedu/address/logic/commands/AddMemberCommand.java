@@ -29,7 +29,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds CourseMates as members to an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: NAME (group must exist) "
+            + "Parameters: GROUP_NAME (group must exist) "
             + PREFIX_COURSEMATE + " COURSEMATE"
             + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
@@ -37,7 +37,7 @@ public class AddMemberCommand extends Command {
             + PREFIX_COURSEMATE + " John Doe.";
     public static final String MESSAGE_MEMBERS_ALREADY_IN_GROUP =
             "Some of the specified members are already in the group.";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+    public static final String MESSAGE_SUCCESSFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
             + "%2$s new member(s) have been added to the group!";
 
     private final Name groupName;
@@ -101,7 +101,7 @@ public class AddMemberCommand extends Command {
 
         model.setGroup(toModify, modifiedGroup);
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName,
+        return new CommandResult(String.format(MESSAGE_SUCCESSFULLY_ADDED, groupName,
                 courseMateList.size()), false, false, true);
     }
 

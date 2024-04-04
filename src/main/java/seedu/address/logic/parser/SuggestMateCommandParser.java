@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import seedu.address.logic.commands.SuggestMateCommand;
@@ -20,7 +21,13 @@ public class SuggestMateCommandParser implements Parser<SuggestMateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE);
 
+        if (argMultiMap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SuggestMateCommand.MESSAGE_USAGE));
+        }
+
         Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
+
         return new SuggestMateCommand(groupName);
     }
 }

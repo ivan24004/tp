@@ -36,7 +36,7 @@ public class DeleteSkillCommand extends Command {
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "Skills are successfully deleted";
+    public static final String MESSAGE_SUCCESS = "Skill(s) are successfully deleted";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
     public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";

@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " #1";
 
-    public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate";
+    public static final String MESSAGE_DELETE_COURSE_MATE_SUCCESS = "Deleted CourseMate %1$s";
 
     private final QueryableCourseMate queryableCourseMate;
 
@@ -52,9 +52,12 @@ public class DeleteCommand extends Command {
 
         CourseMate courseMateToDelete = courseMateToDeleteList.get(0);
         model.deleteCourseMate(courseMateToDelete);
-        model.setRecentlyProcessedCourseMate(courseMateToDelete);
+        if (courseMateToDelete.equals(model.getRecentlyProcessedCourseMate())) {
+            model.setRecentlyProcessedCourseMate(null);
+        }
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        return new CommandResult(MESSAGE_DELETE_COURSE_MATE_SUCCESS, false, false, true);
+        return new CommandResult(String.format(MESSAGE_DELETE_COURSE_MATE_SUCCESS, courseMateToDelete.getName()),
+                false, false, true);
     }
 
     @Override

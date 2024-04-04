@@ -47,6 +47,16 @@ public class CourseMateDetailPanel extends UiPart<Region> {
      * Changes the {@code CourseMateDetailPanel} to display the given {@code CourseMate}.
      */
     public void loadCourseMate(CourseMate courseMate) {
+        if (courseMate == null) {
+            id.setText("## ");
+            name.setText("");
+            phone.setText("");
+            email.setText("");
+            telegramHandle.setText("");
+            rating.setText("");
+            skills.getChildren().clear();
+            return;
+        }
         id.setText("## ");
         name.setText(courseMate.getName().fullName);
         phone.setText(courseMate.getPhone().value);

@@ -300,6 +300,19 @@ Examples:
 - `delete-member CS2103T G18 -cm Ivan -cm #1`
 - `delete-member CS2103T G18 -cm ##`
 
+### Give rating to your courseMates: `rate-mate`
+
+Rates courseMates by up to five stars.
+
+Format: `rate-mate COURSEMATE -r RATING`
+
+Parameters:
+- `COURSEMATE`: Name of the existing courseMate to give the rating to. Accepts aliases (substrings or in hashtag (#) notation).
+- `RATING`: The rating given, which is a single digit integer between 0 and 5, where 0 signifies that no rating is given.
+
+Examples:
+- `rate-mate Bob -r 5`
+
 ### Edit the telegram chat URL of a group: `edit-tg-chat-url`
 
 Edits the telegram chat URL of a group.

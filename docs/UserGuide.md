@@ -356,13 +356,13 @@ Load the saved data when starting the app. Save the state of coursemates and gro
 
 ### Editing the data file
 
-MatchMate data are saved automatically as a JSON file `[JAR file location]/data/matchmate.json`. Advanced users are welcome to update data directly by editing that data file.
+MatchMate data are saved automatically as JSON files in `[JAR file location]/data/`. It is possible but not recommended to edit the different `.json` files directly instead of through the app.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, MatchMate will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the MatchMate to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+It is recommended to take a backup of the original save file before editing it.<br>
+Certain edits can cause the MatchMate to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 

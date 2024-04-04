@@ -216,7 +216,7 @@ will still succeed, but it won't show duplicate skills.
 Format: `add-skill COURSEMATE -s SKILL [-s SKILL]...`
 
 Parameters:
-- `COURSENAME`: Name of the existing courseMate. Accept aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE`: Name of the existing courseMate. Accept aliases (substrings or in hashtag (#) notation).
 - `SKILL` (one or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
 
 Examples:

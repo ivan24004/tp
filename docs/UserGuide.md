@@ -451,5 +451,7 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD`<br> e.g., `find John`
 **Help**   | `help`
 **List**   | `list`
+**Mark skill important in group**   | `mark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `mark-important CS2103T G18 -s C++ -s Java`
+**Unmark skill important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
 **Require skill in group**    | `require-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `require-skill CS2103T G18 -s C++ -s Java`
 **Unrequire skill in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`

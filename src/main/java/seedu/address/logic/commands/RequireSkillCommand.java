@@ -32,7 +32,7 @@ public class RequireSkillCommand extends Command {
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+    public static final String MESSAGE_SUCCESSFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
             + "%2$s skill(s) are now required for the group!";
 
     private final Name groupName;

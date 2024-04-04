@@ -74,8 +74,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
     /**
      * Isolates the preamble of the {@code argsString} and set is as the name argument of the command.
-     *
-     * @param argsString   Arguments string of the form: {@code preamble <prefix> value <prefix> value ...}
      * @param argMultimap  ArgumentMultimap object that maps prefixes to their arguments
      * @return             ArgumentMultimap object that maps the name prefix to the name argument
      */

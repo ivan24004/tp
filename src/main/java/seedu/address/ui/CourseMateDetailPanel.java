@@ -50,8 +50,8 @@ public class CourseMateDetailPanel extends UiPart<Region> {
         if (courseMate == null) {
             id.setText("## ");
             name.setText("");
-            phone.setText("");
             email.setText("");
+            phone.setText("");
             telegramHandle.setText("");
             rating.setText("");
             skills.getChildren().clear();
@@ -59,8 +59,12 @@ public class CourseMateDetailPanel extends UiPart<Region> {
         }
         id.setText("## ");
         name.setText(courseMate.getName().fullName);
-        phone.setText(courseMate.getPhone().value);
         email.setText(courseMate.getEmail().value);
+        if (courseMate.getPhone() == null) {
+            phone.setText("");
+        } else {
+            phone.setText(courseMate.getPhone().value);
+        }
         if (courseMate.getTelegramHandle() == null) {
             telegramHandle.setText("");
         } else {

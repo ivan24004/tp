@@ -31,7 +31,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_SKILL);
+                ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_SKILL);
 
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -44,15 +44,19 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw e;
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
+
+        Phone phone = null;
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
 
         TelegramHandle telegramHandle = null;
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {

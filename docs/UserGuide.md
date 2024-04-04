@@ -120,14 +120,14 @@ Examples:
 - `add John Doe`
 - `add John Doe -p 87654321 -e johndoe@example.com -t johndoe -s Leadership -s C++`
 
-### Listing all courseMates : `list`
+### Listing all courseMates and groups: `list`
 
-Lists all contacts in the contact list.
+Lists all courseMates and groups in the lists.
 
 Format: `list`
 
 Expected output:
-- `Message: Listed all contacts`
+- `Message: Listed all courseMates and groups`
 
 
 ### Editing a courseMate : `edit`
@@ -210,21 +210,34 @@ Examples:
 
     This command does nothing but it will be executed successfully.
 
-### Search contacts with a keyword: `find`
+### Search courseMates with keywords: `find-mate`
 
-Searches contacts that include a matching keyword, in their name or skills. More relevant fields can be supported in the future.
+Searches courseMates that include all matching keywords, in their name or skills. More relevant fields can be supported in the future.
 
-To match a contact’s skill, the keyword should match exactly with the skill. To match a contact’s name, the keyword can be a case-insensitive substring of the name.
+To match a courseMate’s skill, the keywords should match exactly with the skill. To match a courseMate’s name, the keywords can be a case-insensitive substring of the name.
 
-Format: `find KEYWORD`
+Format: `find-mate KEYPHRASE`
 
 Parameters:
-- `KEYWORD`: The keyword of the search. Accepts any strings.
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
 
 Examples:
-- `find John`
-- `find C++`
-- `find CS2103T G18`
+- `find-mate John`
+- `find-mate C++`
+
+### Search groups with keywords: `find-group`
+
+Searches groups that include all matching keywords in their name.
+
+To match a group's name, the keywords can be a case-insensitive substring of the name.
+
+Format: `find-group KEYPHRASE`
+
+Parameters:
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
+
+Examples:
+- `find-group CS2103T G18`
 
 ### Deleting a contact : `delete`
 
@@ -286,6 +299,19 @@ Parameters:
 Examples:
 - `delete-member CS2103T G18 -cm Ivan -cm #1`
 - `delete-member CS2103T G18 -cm ##`
+
+### Give rating to your courseMates: `rate-mate`
+
+Rates courseMates by up to five stars.
+
+Format: `rate-mate COURSEMATE -r RATING`
+
+Parameters:
+- `COURSEMATE`: Name of the existing courseMate to give the rating to. Accepts aliases (substrings or in hashtag (#) notation).
+- `RATING`: The rating given, which is a single digit integer between 0 and 5, where 0 signifies that no rating is given.
+
+Examples:
+- `rate-mate Bob -r 5`
 
 ### Edit the telegram chat URL of a group: `edit-tg-chat-url`
 

@@ -38,8 +38,6 @@ It is optimized for Command Line Interface (CLI) while still having the benefits
 
    * `delete #3` : Deletes the 3rd courseMate shown in the current list.
 
-   * `clear` : Deletes all courseMates.
-
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -91,7 +89,7 @@ This way, you can quickly add multiple courseMates to a group without having to 
 * Items with `...`​ after them can be used multiple times including zero times.<br>
   e.g. `[-s SKILL]...​` can be used as ` ` (i.e. 0 times), `-s C++`, `-s C++ -s Python` etc.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
@@ -440,12 +438,6 @@ Parameters:
 - `GROUP_NAME`: Name of the existing group.
 
 
-### Clearing the courseMate list : `clear`
-
-Clears all entries from the courseMate list. That includes all courseMates not currently displayed in the courseMate list panel.
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -492,7 +484,6 @@ Action     | Format, Examples
 **Add courseMate**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-t TELEGRAM_HANDLE] [-s SKILL]...​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -t johndoe -s Leadership -s C++`
 **Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
 **Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
-**Clear courseMate list**  | `clear`
 **Create group**    |   `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]... [-s SKILL]...` <br> e.g., `create-group CS2103T G18 -cm John -s C++ -s Java -cm #2 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Delete courseMate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`

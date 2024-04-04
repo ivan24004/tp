@@ -15,11 +15,11 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-mate";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all coursemates whose names contain all of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all coursemates whose names or skills contain "
+            + "all of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "KEYPHRASE can contain multiple keywords and spaces.\n"
             + "Parameters: KEYPHRASE\n"
-            + "Example: " + COMMAND_WORD + " alex";
+            + "Example: " + COMMAND_WORD + " alex yeoh";
 
     private final ContainsKeywordPredicate predicate;
 

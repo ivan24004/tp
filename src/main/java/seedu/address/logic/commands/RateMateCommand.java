@@ -22,7 +22,7 @@ public class RateMateCommand extends Command {
     public static final String COMMAND_WORD = "rate-mate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Rate a coursemate by a number between 0 to 5, where 0 means no rating is given. "
+            + ": Rate a coursemate by a single digit integer between 0 to 5, where 0 means no rating is given. "
             + "NAME can be specified either by full name or by the '#' notation.\n"
             + "Parameters: NAME "
             + PREFIX_RATING + " RATING\n"

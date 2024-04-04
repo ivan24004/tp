@@ -1,3 +1,9 @@
+---
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
+---
+
 # MatchMate User Guide
 
 Matchmate is a **desktop app to create groups among their friends / acquaintances,

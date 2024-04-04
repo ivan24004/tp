@@ -15,10 +15,11 @@ public class FindGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "find-group";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all groups whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "CS2103T";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all groups whose names contain a "
+            + "the specified keyphrase (case-insensitive) and displays them as a list.\n"
+            + "KEYPHRASE can contain any string.\n"
+            + "Parameters: KEYPHRASE\n"
+            + "Example: " + COMMAND_WORD + " CS2103T G18";
 
     private final ContainsGroupKeywordPredicate predicate;
 

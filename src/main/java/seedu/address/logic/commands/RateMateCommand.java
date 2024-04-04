@@ -24,7 +24,7 @@ public class RateMateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Give a rating to a coursemate by up to five stars.\n"
             + "COURSEMATE can be specified either by name or by the '#' notation.\n"
-            + "RATING can be specified by a single digit integer between 0 and 5, where 0 means no rating is given\n"
+            + "RATING can be specified by a single digit integer between 0 and 5, where 0 means no rating is given.\n"
             + "Parameters: COURSEMATE "
             + PREFIX_RATING + " RATING\n"
             + "Example: " + COMMAND_WORD + " #1 "

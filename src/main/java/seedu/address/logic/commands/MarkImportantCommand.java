@@ -33,7 +33,7 @@ public class MarkImportantCommand extends Command {
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "Skills successfully marked as important";
+    public static final String MESSAGE_SUCCESS = "Skill(s) successfully marked as important";
     public static final String MESSAGE_SKILL_NOT_PRESENT = "This group does not have one of the skills provided.";
 
     public static final String MESSAGE_NOT_EDITED = "At least one skill to mark must be provided.";

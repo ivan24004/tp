@@ -155,9 +155,6 @@ public class DeleteSkillCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
-
         // different index -> returns false
         assertFalse(standardCommand.equals(new DeleteSkillCommand(
                 new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), DESC_DELSKILL_JAVA)));

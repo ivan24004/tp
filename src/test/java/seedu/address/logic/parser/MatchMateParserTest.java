@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.AddSkillCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateGroupCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMemberCommand;
@@ -61,12 +60,6 @@ public class MatchMateParserTest {
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
                 + CourseMateUtil.getAddSkillDescriptorDetails(descriptor));
         assertEquals(new AddSkillCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE), descriptor), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test

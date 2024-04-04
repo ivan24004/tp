@@ -26,14 +26,15 @@ public class UnrequireSkillCommand extends Command {
     public static final String COMMAND_WORD = "unrequire-skill";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes required skills to an already existing group. "
-            + "Parameters: NAME (group must exist) "
+            + "Parameters: GROUP_NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
-    public static final String MESSAGE_SUCCESSFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
-            + "%2$s skills are now required for the group!\n";
+
+    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+            + "%2$s skill(s) are now required for the group!\n";
 
     public static final String MESSAGE_MISSING_SKILLS = "The following skills couldn't be found: ";
 

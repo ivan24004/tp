@@ -30,14 +30,14 @@ public class AddSkillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a courseMate. "
             + "NAME can be specified either by full name or by the '#' notation.\n"
-            + "Parameters: NAME "
+            + "Parameters: GROUP_NAME "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " #1 "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "New skills added";
+    public static final String MESSAGE_SUCCESS = "Skill(s) successfully added";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
 

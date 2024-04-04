@@ -62,4 +62,11 @@ public class RequireSkillCommandTest {
         assertDoesNotThrow(() -> requireSkillCommand.execute(model));
     }
 
+    @Test
+    public void execute_groupInListNewSkill_runsNormally() {
+        Set<Skill> newSkillList = new HashSet<>();
+        newSkillList.add(new Skill("NEW_SKILL_"));
+        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, newSkillList);
+        assertDoesNotThrow(() -> requireSkillCommand.execute(model));
+    }
 }

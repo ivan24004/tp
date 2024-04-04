@@ -120,14 +120,14 @@ Examples:
 - `add John Doe`
 - `add John Doe -p 87654321 -e johndoe@example.com -t johndoe -s Leadership -s C++`
 
-### Listing all courseMates : `list`
+### Listing all courseMates and groups: `list`
 
-Lists all contacts in the contact list.
+Lists all courseMates and groups in the lists.
 
 Format: `list`
 
 Expected output:
-- `Message: Listed all contacts`
+- `Message: Listed all courseMates and groups`
 
 
 ### Editing a courseMate : `edit`
@@ -210,7 +210,7 @@ Examples:
 
     This command does nothing but it will be executed successfully.
 
-### Search courseMates with a keyword: `find-mate`
+### Search courseMates with keywords: `find-mate`
 
 Searches courseMates that include all matching keywords, in their name or skills. More relevant fields can be supported in the future.
 
@@ -219,12 +219,25 @@ To match a courseMate’s skill, the keywords should match exactly with the skil
 Format: `find-mate KEYPHRASE`
 
 Parameters:
-- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings.
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
 
 Examples:
 - `find-mate John`
 - `find-mate C++`
-- `find-mate CS2103T G18`
+
+### Search groups with keywords: `find-group`
+
+Searches groups that include all matching keywords in their name.
+
+To match a group's name, the keywords can be a case-insensitive substring of the name.
+
+Format: `find-group KEYPHRASE`
+
+Parameters:
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
+
+Examples:
+- `find-group CS2103T G18`
 
 ### Deleting a contact : `delete`
 

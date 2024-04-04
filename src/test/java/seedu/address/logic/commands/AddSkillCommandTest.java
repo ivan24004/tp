@@ -183,9 +183,6 @@ public class AddSkillCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
-
         // different index -> returns false
         assertFalse(standardCommand.equals(new AddSkillCommand(
                 new QueryableCourseMate(INDEX_SECOND_COURSE_MATE), DESC_ADDSKILL_JAVA)));

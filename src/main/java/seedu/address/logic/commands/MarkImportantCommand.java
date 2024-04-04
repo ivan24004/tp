@@ -26,7 +26,7 @@ public class MarkImportantCommand extends Command {
     public static final String COMMAND_WORD = "mark-important";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a group skill to important. "
-            + "Parameters: GROUP_NAME"
+            + "Parameters: GROUP_NAME (group must exist) "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD
             + " CS2103T "

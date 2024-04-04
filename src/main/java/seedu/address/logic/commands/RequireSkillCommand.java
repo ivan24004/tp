@@ -23,14 +23,14 @@ public class RequireSkillCommand extends Command {
     public static final String COMMAND_WORD = "require-skill";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds required skills to an already existing group. "
-            + "Parameters: NAME (group must exist) "
+            + "Parameters: GROUP_NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
     public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
-            + "%2$s skills are now required for the group!";
+            + "%2$s skill(s) are now required for the group!";
 
     private final Name groupName;
     private final Set<Skill> skillSet;

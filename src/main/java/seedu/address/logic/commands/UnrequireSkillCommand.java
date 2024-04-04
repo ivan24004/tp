@@ -26,7 +26,7 @@ public class UnrequireSkillCommand extends Command {
     public static final String COMMAND_WORD = "unrequire-skill";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes required skills to an already existing group. "
-            + "Parameters: GROUP_NAME (group must exist) "
+            + "Parameters: NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "

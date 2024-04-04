@@ -29,7 +29,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds CourseMates as members to an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: GROUP_NAME (group must exist) "
+            + "Parameters: NAME (group must exist) "
             + PREFIX_COURSEMATE + " COURSEMATE"
             + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "

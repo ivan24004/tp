@@ -29,7 +29,7 @@ public class AddSkillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a courseMate. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: GROUP_NAME "
+            + "Parameters: COURSEMATE "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " #1 "

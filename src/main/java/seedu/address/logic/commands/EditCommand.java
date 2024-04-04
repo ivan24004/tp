@@ -32,8 +32,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the coursemate identified "
-            + "by the coursemate's name or the index number used in the displayed coursemate list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the courseMate identified "
+            + "by the courseMate's name or the index number used in the displayed courseMate list. "
             + "Existing values will be overwritten by the input values.\n"
             + "NAME can be specified either by partial name (substrings allowed) or by the '#' notation.\n"
             + "Parameters: NAME "

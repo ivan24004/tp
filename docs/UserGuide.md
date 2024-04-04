@@ -129,7 +129,7 @@ Consider adding a suffix to the name to differentiate them.
 Examples:
 
 - `add John Doe`
-- `add John Doe -p 87654321 -e johndoe@example.com -t johndoe -s Leadership -s C++`
+- `add John Doe -e johndoe@example.com -p 87654321 -t johndoe -s Leadership -s C++`
 
 
 <box type="info" seamless>
@@ -204,7 +204,7 @@ Instead of supplying a full name to identify an existing courseMate, you can use
 Examples:
 - `edit John Doe -n Joe Schmo`
 - `edit #1 -n Joe Schmo`
-- `edit John -p 98765432 -e johndoe@gmail.com`
+- `edit John -e johndoe@gmail.com -p 98765432`
 
 <div style="page-break-after: always;"></div>
 
@@ -213,12 +213,11 @@ Adds a list of skills to a courseMate. Adding a skill that already exists in the
 will still succeed, but it won't show duplicate skills.
 
 
-Format: `add-skill COURSENAME [-s SKILL]...`
+Format: `add-skill COURSEMATE -s SKILL [-s SKILL]...`
 
 Parameters:
 - `COURSENAME`: Name of the existing courseMate. Accept aliases (substrings or in hashtag (#) notation).
-- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
-Different capitalization are considered as different skills.
+- `SKILL` (one or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
 
 Examples:
 - `add-skill John Doe -s C++ -s Leadership`
@@ -227,18 +226,18 @@ Examples:
 ### Delete a skill from a courseMate  : `delete-skill`
 Deletes a list of skills from a courseMate.
 
-Format: `delete-skill COURSEMATE [-s SKILL]...`
+Format: `delete-skill COURSEMATE -s SKILL [-s SKILL]...`
 
 Parameters:
 - `COURSEMATE`: Name of the existing courseMate. Accept aliases (substrings or in hashtag (#) notation).
-- `SKILL`: (zero or multiple allowed): Skill(s) of the courseMate. These must be existing skills that the courseMate contains.
+- `SKILL`: (one or multiple allowed): Skill(s) of the courseMate. These must be existing skills that the courseMate contains.
 
 Examples:
 - `delete-skill John Doe -s C++ -s Leadership`
 
 ### Search courseMates with keywords: `find-mate`
 
-Searches courseMates that include all matching keywords, in their name or skills. More relevant fields can be supported in the future.
+Finds all courseMates whose names or skills contain the specified keyphrase (case-insensitive).
 
 To match a courseMate’s skill, the keywords should match exactly with the skill. To match a courseMate’s name, the keywords can be a case-insensitive substring of the name.
 
@@ -301,11 +300,11 @@ Examples:
 ### Add courseMates to group: `add-member`
 Adds some team members to an existing group.
 
-Format: `add-member GROUP_NAME [-cm COURSEMATE]...`
+Format: `add-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
-- `COURSEMATE`: Name of the existing courseMates to be added to the group. Accept aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE` (one or multiple allowed): Name of the existing courseMates to be added to the group. Accept aliases (substrings or in hashtag (#) notation).
 
 Examples:
 - `add-member CS2103T G18 -cm Ivan -cm #1`
@@ -322,11 +321,11 @@ Examples:
 
 Deletes some team members from an existing group.
 
-Format: `delete-member GROUP_NAME [-cm COURSEMATE]...`
+Format: `delete-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
-- `COURSEMATE`: Name of the existing courseMates to be deleted from the group. Accept aliases (substrings or in hashtag (#) notation).
+- `COURSEMATE` (one or multiple allowed): Name of the existing courseMates to be deleted from the group. Accept aliases (substrings or in hashtag (#) notation).
 
 Examples:
 - `delete-member CS2103T G18 -cm Ivan -cm #1`
@@ -349,7 +348,7 @@ Examples:
 
 Edits the telegram chat URL of a group.
 
-Format: `edit-tg-chat-url GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]`
+Format: `edit-tg-chat-url GROUP_NAME -t NEW_TELEGRAM_CHAT_URL`
 
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
@@ -481,21 +480,22 @@ Furthermore, certain edits can cause the MatchMate to behave in unexpected ways 
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add courseMate**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-t TELEGRAM_HANDLE] [-s SKILL]...​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -t johndoe -s Leadership -s C++`
-**Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
-**Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
+**Add courseMate**    | `add NAME -e EMAIL [-p PHONE_NUMBER] [-t TELEGRAM_HANDLE] [-s SKILL]...​` <br> e.g., `add John Doe -e johndoe@example.com -p 87654321 -t johndoe -s Leadership -s C++`
+**Add group member**    |   `add-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
+**Add skill**   |   ` add-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
 **Create group**    |   `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]... [-s SKILL]...` <br> e.g., `create-group CS2103T G18 -cm John -s C++ -s Java -cm #2 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Delete courseMate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
-**Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
-**Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
-**Edit courseMate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-t NEW_TELEGRAM_HANDLE]​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
-**Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME [-t NEW_TELEGRAM_CHAT_URL]` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
-**Find**   | `find KEYWORD`<br> e.g., `find John`
+**Delete group member**    |   `delete-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
+**Delete skill** | `delete-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
+**Edit courseMate**   | `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
+**Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME -t NEW_TELEGRAM_CHAT_URL` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
+**Find courseMate**   | `find-mate KEYPHRASE`<br> e.g., `find John`
+**Find group**   | `find-group KEYPHRASE`<br> e.g., `find CS2103T`
 **Help**   | `help`
 **List**   | `list`
 **Mark skill important in group**   | `mark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `mark-important CS2103T G18 -s C++ -s Java`
-**Unmark skill important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
 **Require skill in group**    | `require-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `require-skill CS2103T G18 -s C++ -s Java`
-**Unrequire skill in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`
 **Suggest courseMates for group** | `suggest-mate GROUP_NAME` <br> e.g., `suggest-mate CS2103T G18`
+**Unmark skill important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
+**Unrequire skill in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`

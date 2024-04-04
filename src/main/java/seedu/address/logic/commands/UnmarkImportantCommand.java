@@ -24,8 +24,9 @@ import seedu.address.model.skill.Skill;
 public class UnmarkImportantCommand extends Command {
     public static final String COMMAND_WORD = "unmark-important";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a group skill from important to unimportant. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a group skill from important to unimportant.\n"
             + "Parameters: GROUP_NAME (group must exist) "
+            + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SKILL + " Python "

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.SuggestMateCommand;
 import seedu.address.model.coursemate.Name;
 
@@ -22,9 +23,10 @@ public class SuggestMateCommandParserTest {
     @Test
     public void parse_invalidArgs_returnsParseException() {
         // empty input
-        assertParseFailure(parser, "", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                SuggestMateCommand.MESSAGE_USAGE));
 
         // invalid group name
-        assertParseFailure(parser, "*****", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "group****", Name.MESSAGE_CONSTRAINTS);
     }
 }

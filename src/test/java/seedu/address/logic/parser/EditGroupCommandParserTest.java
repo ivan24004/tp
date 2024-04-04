@@ -25,7 +25,8 @@ public class EditGroupCommandParserTest {
     @Test
     public void parse_invalidArgs_returnsParseException() {
         // empty input
-        assertParseFailure(parser, "", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                EditGroupCommand.MESSAGE_USAGE));
 
         // invalid group name
         assertParseFailure(parser, "***** -t https://t.me/AAAAAEQ8H1J1J1J1J1J1", Name.MESSAGE_CONSTRAINTS);

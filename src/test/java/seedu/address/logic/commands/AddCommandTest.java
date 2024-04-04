@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyGroupList;
@@ -295,6 +296,11 @@ public class AddCommandTest {
             returnContactList.setCourseMates(courseMateList);
             return returnContactList;
         }
+
+        @Override
+        public ReadOnlyGroupList getGroupList() {
+            return new GroupList();
+        }
     }
 
     /**
@@ -318,6 +324,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyContactList getContactList() {
             return new ContactList();
+        }
+
+        @Override
+        public ReadOnlyGroupList getGroupList() {
+            return new GroupList();
         }
     }
 

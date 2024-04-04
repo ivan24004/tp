@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,7 +28,7 @@ public class AddSkillCommand extends Command {
     public static final String COMMAND_WORD = "add-skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a courseMate. "
-            + "NAME can be specified either by full name or by the '#' notation.\n"
+            + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: GROUP_NAME "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
@@ -39,7 +38,8 @@ public class AddSkillCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Skill(s) successfully added";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
+            + "Consider adding a suffix to disambiguate";
 
     private final QueryableCourseMate queryableCourseMate;
     private final AddSkillDescriptor addSkillDescriptor;
@@ -82,7 +82,6 @@ public class AddSkillCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(messageNewSkill(newSkills) + MESSAGE_SUCCESS,
                 false, false, true);

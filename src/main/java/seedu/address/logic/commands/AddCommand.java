@@ -39,7 +39,8 @@ public class AddCommand extends Command {
             + PREFIX_SKILL + " Java";
 
     public static final String MESSAGE_SUCCESS = "New courseMate added";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
+            + "Consider adding a suffix to disambiguate";
 
     private final CourseMate toAdd;
 

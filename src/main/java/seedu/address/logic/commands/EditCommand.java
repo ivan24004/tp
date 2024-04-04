@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.List;
 import java.util.Objects;
@@ -92,8 +90,6 @@ public class EditCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
-        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(MESSAGE_EDIT_COURSE_MATE_SUCCESS, false, false, true);
     }

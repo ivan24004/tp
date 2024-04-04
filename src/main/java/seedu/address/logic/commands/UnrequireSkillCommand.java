@@ -32,7 +32,8 @@ public class UnrequireSkillCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
-    public static final String MESSAGE_SUCCESFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
+
+    public static final String MESSAGE_SUCCESSFULLY_ADDED = "Group successfully modified, Name: %1$s\n"
             + "%2$s skill(s) are now required for the group!\n";
 
     public static final String MESSAGE_MISSING_SKILLS = "The following skills couldn't be found: ";
@@ -84,7 +85,7 @@ public class UnrequireSkillCommand extends Command {
         String stringResult = "";
 
         if (removedCounter > 0) {
-            stringResult += String.format(MESSAGE_SUCCESFULLY_ADDED,
+            stringResult += String.format(MESSAGE_SUCCESSFULLY_ADDED,
                     groupName, modifiedGroup.getSkills().size());
         }
 

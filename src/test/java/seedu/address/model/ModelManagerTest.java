@@ -122,7 +122,14 @@ public class ModelManagerTest {
     @Test
     public void findCourseMate_byIndexCourseMateInContactList_doesNotThrow() {
         modelManager.addCourseMate(ALICE);
+        modelManager.setRecentlyProcessedCourseMate(ALICE);
         assertDoesNotThrow(() -> modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(-1))));
+    }
+
+    @Test
+    public void findCourseMate_recentlyProcessedCourseMateNotSet_throwsError() {
+        assertThrows(CourseMateNotFoundException.class, () ->
+                modelManager.findCourseMate(new QueryableCourseMate(Index.fromZeroBased(-1))));
     }
 
     @Test

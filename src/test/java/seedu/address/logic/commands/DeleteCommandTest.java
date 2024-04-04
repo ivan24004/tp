@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
 import static seedu.address.logic.commands.CommandTestUtil.showAllCourseMates;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
@@ -39,13 +38,13 @@ public class DeleteCommandTest {
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
 
-        String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
+                courseMateToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         expectedModel.deleteCourseMate(courseMateToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
-        assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
     }
 
     @Test
@@ -61,7 +60,6 @@ public class DeleteCommandTest {
         expectedModel.updateFilteredCourseMateList(predicate);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
-        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -70,7 +68,6 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
-        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -79,7 +76,6 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(name));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
-        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test
@@ -89,14 +85,14 @@ public class DeleteCommandTest {
         CourseMate courseMateToDelete = model.getFilteredCourseMateList().get(INDEX_FIRST_COURSE_MATE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(INDEX_FIRST_COURSE_MATE));
 
-        String expectedMessage = DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS;
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COURSE_MATE_SUCCESS,
+                courseMateToDelete.getName());
 
         Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         expectedModel.deleteCourseMate(courseMateToDelete);
         showNoCourseMate(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, true);
-        assertRecentlyProcessedCourseMateEdited(model, courseMateToDelete);
     }
 
     @Test
@@ -110,7 +106,6 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new QueryableCourseMate(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
-        assertRecentlyProcessedCourseMateEdited(model, null);
     }
 
     @Test

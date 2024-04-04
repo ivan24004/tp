@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
@@ -28,16 +27,12 @@ public class CreateGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a group containing any number of CourseMates, "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: GROUP_NAME (cannot be empty, must be unique, and must be only alphanumeric) "
-            + "[" + PREFIX_TELEGRAM + " TELEGRAM_CHAT_URL" + "]"
+            + "Parameters: NAME (cannot be empty, must be unique, and must be only alphanumeric) "
             + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]... "
-            + "[" + PREFIX_SKILL + " SKILL" + "]..."
-            + "\n"
+            + "[" + PREFIX_TELEGRAM + " TELEGRAM_CHAT_URL" + "]\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_COURSEMATE + " #1 "
-            + PREFIX_COURSEMATE + " John Doe "
-            + PREFIX_SKILL + " C++ "
-            + PREFIX_SKILL + " Java "
+            + PREFIX_COURSEMATE + " John Doe."
             + PREFIX_TELEGRAM + " https://t.me/+3Jh9eXVeRh7qoaIN";
 
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the group list.";

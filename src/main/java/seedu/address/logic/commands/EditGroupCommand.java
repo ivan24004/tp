@@ -20,7 +20,7 @@ public class EditGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the telegram chat of a preexisting group. "
             + "groups can be specified by name.\n"
-            + "Parameters: GROUP_NAME (cannot be empty and must already exist) "
+            + "Parameters: NAME (cannot be empty and must already exist) "
             + PREFIX_TELEGRAM + " TELEGRAM_CHAT_URL (cannot be empty)\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_TELEGRAM + "https://t.me/+3Jh9eXVeRh7qoaIN";

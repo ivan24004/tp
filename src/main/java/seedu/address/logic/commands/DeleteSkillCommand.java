@@ -28,7 +28,7 @@ public class DeleteSkillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes skills of a coursemate. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
-            + "Parameters: NAME "
+            + "Parameters: COURSEMATE "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " #1 "

@@ -25,7 +25,7 @@ public class SuggestMateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all course mates with any of "
             + "the required skills from the given group and displays them as a list.\n"
             + "The course mates already in the group are not displayed. Groups can be specified by name.\n"
-            + "Parameters: NAME (cannot be empty and must already exist)\n"
+            + "Parameters: GROUP_NAME (cannot be empty and must already exist)\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
 
     public static final String MESSAGE_NO_UNCOMPLETED_SKILLS = "All required skills have already been fulfilled. "

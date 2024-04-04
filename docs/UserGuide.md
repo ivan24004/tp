@@ -210,21 +210,21 @@ Examples:
 
     This command does nothing but it will be executed successfully.
 
-### Search contacts with a keyword: `find`
+### Search courseMates with a keyword: `find-mate`
 
-Searches contacts that include a matching keyword, in their name or skills. More relevant fields can be supported in the future.
+Searches courseMates that include all matching keywords, in their name or skills. More relevant fields can be supported in the future.
 
-To match a contact’s skill, the keyword should match exactly with the skill. To match a contact’s name, the keyword can be a case-insensitive substring of the name.
+To match a courseMate’s skill, the keywords should match exactly with the skill. To match a courseMate’s name, the keywords can be a case-insensitive substring of the name.
 
-Format: `find KEYWORD`
+Format: `find-mate KEYPHRASE`
 
 Parameters:
-- `KEYWORD`: The keyword of the search. Accepts any strings.
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings.
 
 Examples:
-- `find John`
-- `find C++`
-- `find CS2103T G18`
+- `find-mate John`
+- `find-mate C++`
+- `find-mate CS2103T G18`
 
 ### Deleting a contact : `delete`
 

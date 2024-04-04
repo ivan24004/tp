@@ -17,7 +17,8 @@ public class FindGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all groups whose names contain all of "
             + "the specified keywords (case-insensitive) and displays them as a list.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "KEYPHRASE can contain spaces and multiple keywords"
+            + "Parameters: KEYPHRASE\n"
             + "Example: " + COMMAND_WORD + "CS2103T";
 
     private final ContainsGroupKeywordPredicate predicate;

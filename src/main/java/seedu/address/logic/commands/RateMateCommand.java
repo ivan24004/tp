@@ -72,7 +72,6 @@ public class RateMateCommand extends Command {
                 rating);
 
         model.setCourseMate(courseMateToRate, ratedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(ratedCourseMate);
         return new CommandResult(MESSAGE_RATE_COURSE_MATE_SUCCESS, false, false, true);
     }

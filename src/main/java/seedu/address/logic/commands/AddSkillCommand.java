@@ -29,7 +29,7 @@ public class AddSkillCommand extends Command {
     public static final String COMMAND_WORD = "add-skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a courseMate. "
-            + "NAME can be specified either by full name or by the '#' notation.\n"
+            + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: GROUP_NAME "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
@@ -82,7 +82,6 @@ public class AddSkillCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(messageNewSkill(newSkills) + MESSAGE_SUCCESS,
                 false, false, true);

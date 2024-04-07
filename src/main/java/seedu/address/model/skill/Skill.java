@@ -49,6 +49,21 @@ public class Skill {
         this.important = important;
     }
 
+    private String toLowerCase(String val) {
+        StringBuilder res = new StringBuilder();
+
+        for (int i = 0; i < val.length(); i++) {
+            char c = val.charAt(i);
+            if (Character.isLetter(c) && Character.isUpperCase(c)) {
+                res.append(Character.toLowerCase(c));
+            } else {
+                res.append(c);
+            }
+        }
+
+        return res.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -66,7 +81,7 @@ public class Skill {
 
     @Override
     public int hashCode() {
-        return skillName.hashCode();
+        return toLowerCase(skillName).hashCode();
     }
 
     /**

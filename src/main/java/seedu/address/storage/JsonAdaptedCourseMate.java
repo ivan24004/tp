@@ -56,8 +56,12 @@ class JsonAdaptedCourseMate {
      */
     public JsonAdaptedCourseMate(CourseMate source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
         email = source.getEmail().value;
+        if (source.getPhone() != null) {
+            phone = source.getPhone().value;
+        } else {
+            phone = null;
+        }
         if (source.getTelegramHandle() != null) {
             telegramHandle = source.getTelegramHandle().value;
         } else {

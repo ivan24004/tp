@@ -34,7 +34,7 @@ public class CourseMate {
      */
     public CourseMate(Name name, Phone phone, Email email, TelegramHandle telegramHandle,
             Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, skills);
+        requireAllNonNull(name, email, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +49,7 @@ public class CourseMate {
      */
     public CourseMate(Name name, Phone phone, Email email, TelegramHandle telegramHandle,
             Set<Skill> skills, Rating rating) {
-        requireAllNonNull(name, phone, email, skills, rating);
+        requireAllNonNull(name, email, skills, rating);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -120,8 +120,12 @@ public class CourseMate {
 
         CourseMate otherCourseMate = (CourseMate) other;
         return name.equals(otherCourseMate.name)
-                && phone.equals(otherCourseMate.phone)
                 && email.equals(otherCourseMate.email)
+                && (
+                    phone == null
+                        ? otherCourseMate.phone == null
+                        : phone.equals(otherCourseMate.phone)
+                )
                 && (
                     telegramHandle == null
                         ? otherCourseMate.telegramHandle == null

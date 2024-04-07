@@ -22,6 +22,11 @@ public class EditGroupCommandParser implements Parser<EditGroupCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_TELEGRAM);
 
+        if (argMultiMap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGroupCommand.MESSAGE_USAGE));
+        }
+
         Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
 
         TelegramChat telegramChat = null;

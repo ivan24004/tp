@@ -89,7 +89,11 @@ public class CourseMateBuilder {
      * Sets the {@code Phone} of the {@code CourseMate} that we are building.
      */
     public CourseMateBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        if (phone.isEmpty()) {
+            this.phone = null;
+        } else {
+            this.phone = new Phone(phone);
+        }
         return this;
     }
 

@@ -129,14 +129,20 @@ public class AddCommandParserTest {
         CourseMate expectedCourseMate = new CourseMateBuilder(AMY).withSkills().build();
         assertParseSuccess(parser, VALID_NAME_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddCommand(expectedCourseMate));
+
+        // missing phone
+        expectedCourseMate = new CourseMateBuilder().withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB).withPhone("").withSkills().build();
+        assertParseSuccess(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,
+                new AddCommand(expectedCourseMate));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing phone prefix
-        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB + VALID_PHONE_BOB,
+        // missing name
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
@@ -150,10 +156,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // missing name
-        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
-
         // invalid name
         assertParseFailure(parser, INVALID_NAME_AMPERSAND + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + SKILL_DESC_JAVA + SKILL_DESC_CPP, Name.MESSAGE_CONSTRAINTS);

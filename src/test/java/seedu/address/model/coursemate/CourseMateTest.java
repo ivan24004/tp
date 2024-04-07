@@ -41,9 +41,9 @@ public class CourseMateTest {
         editedAlice = new CourseMateBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameCourseMate(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         CourseMate editedBob = new CourseMateBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameCourseMate(editedBob));
+        assertTrue(BOB.isSameCourseMate(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
+import seedu.address.model.group.Group;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -27,18 +27,19 @@ public class AddSkillCommand extends Command {
 
     public static final String COMMAND_WORD = "add-skill";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a coursemate. "
-            + "NAME can be specified either by full name or by the '#' notation.\n"
-            + "Parameters: NAME "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds skills to a courseMate. "
+            + "CourseMates can be specified either by name or by the '#' notation.\n"
+            + "Parameters: COURSEMATE "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " #1 "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "New skills added";
+    public static final String MESSAGE_SUCCESS = "Skill(s) successfully added";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
+            + "Consider adding a suffix to disambiguate";
 
     private final QueryableCourseMate queryableCourseMate;
     private final AddSkillDescriptor addSkillDescriptor;
@@ -81,7 +82,6 @@ public class AddSkillCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(messageNewSkill(newSkills) + MESSAGE_SUCCESS,
                 false, false, true);
@@ -98,8 +98,7 @@ public class AddSkillCommand extends Command {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("WARNING: the following skills has not been added to any other contacts, ")
-                .append("please ensure it is not misspelt: ");
+        sb.append("WARNING: New skills detected. Please verify for accuracy to avoid any unintended actions: ");
         int size = newSkills.size();
         int count = 0;
         for (Skill skill : newSkills) {
@@ -114,13 +113,19 @@ public class AddSkillCommand extends Command {
         return sb.toString();
     }
 
-    /** Retrieves the newly added skills not in the current courseMate list. */
+    /** Retrieves the newly added skills not in the current courseMate list and group list. */
     private Set<Skill> getNewSkills(Model model) {
         List<CourseMate> getCourseMateList = model.getContactList().getCourseMateList();
         Set<Skill> currentSkills = new HashSet<>();
         for (CourseMate courseMate : getCourseMateList) {
             Set<Skill> courseMateSkills = courseMate.getSkills();
             currentSkills.addAll(courseMateSkills);
+        }
+
+        List<Group> getGroupList = model.getGroupList().getGroupList();
+        for (Group group : getGroupList) {
+            Set<Skill> groupSkills = group.getSkills();
+            currentSkills.addAll(groupSkills);
         }
 
         Set<Skill> newSkills = new HashSet<>();
@@ -192,7 +197,7 @@ public class AddSkillCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return (skills == null || skills.size() == 0) ? false : true;
+            return skills != null && skills.size() != 0;
         }
 
         /**
@@ -216,9 +221,7 @@ public class AddSkillCommand extends Command {
          * Merges the set of skills in the object with the set of skills in the argument
          */
         public void mergeSkills(Set<Skill> argSkills) {
-            for (Skill skill : argSkills) {
-                this.skills.add(skill);
-            }
+            this.skills.addAll(argSkills);
         }
 
         @Override

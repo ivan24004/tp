@@ -116,7 +116,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
-        expectedModel.setCourseMate(model.getFilteredCourseMateList().get(0), editedCourseMate);
+        showCourseMateAtIndex(expectedModel, INDEX_FIRST_COURSE_MATE);
+        expectedModel.setCourseMate(expectedModel.getFilteredCourseMateList().get(0), editedCourseMate);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel, true);
         assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
@@ -217,9 +218,6 @@ public class EditCommandTest {
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
-
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(

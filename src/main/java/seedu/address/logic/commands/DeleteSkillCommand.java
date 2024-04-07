@@ -39,7 +39,8 @@ public class DeleteSkillCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
             + "Consider adding a suffix to disambiguate";
-    public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";
+    public static final String MESSAGE_SKILL_NOT_PRESENT =
+            "This courseMate does not have one or more of the skills provided.";
 
     private final QueryableCourseMate queryableCourseMate;
     private final DeleteSkillDescriptor deleteSkillDescriptor;

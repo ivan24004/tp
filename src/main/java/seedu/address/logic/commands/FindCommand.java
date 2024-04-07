@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "contain the specified keyphrase (case-insensitive) and displays them as a list with index numbers.\n"
             + "KEYPHRASE can contain any string.\n"
             + "Parameters: KEYPHRASE\n"
-            + "Example: " + COMMAND_WORD + " alex";
+            + "Example: " + COMMAND_WORD + " alex yeoh";
 
     private final ContainsKeywordPredicate predicate;
 

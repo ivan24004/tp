@@ -156,7 +156,7 @@ public class AddSkillCommandTest {
 
         Set<Skill> newSkills = new HashSet<>();
         newSkills.add(new Skill(VALID_SKILL_NEWSKILL));
-        String expectedMessage = AddSkillCommand.messageNewSkill(newSkills) + AddSkillCommand.MESSAGE_SUCCESS;
+        String expectedMessage = Messages.messageNewSkill(newSkills) + AddSkillCommand.MESSAGE_SUCCESS;
 
         Model expectedModel = new ModelManager(
                 new ContactList(model.getContactList()), new UserPrefs(), new GroupList());

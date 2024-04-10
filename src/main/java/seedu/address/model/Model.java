@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.skill.Skill;
 
 /**
  * The API of the Model component.
@@ -137,6 +139,11 @@ public interface Model {
      * Finds a {@code CourseMate} with the exact same name.
      */
     List<CourseMate> findCourseMate(QueryableCourseMate query);
+
+    /**
+     * Retrieves the newly added skills not in the current courseMate list and group list.
+     */
+    Set<Skill> getNewSkills(Set<Skill> skillSet);
 
     /** Returns an unmodifiable view of the filtered courseMate list */
     ObservableList<CourseMate> getFilteredCourseMateList();

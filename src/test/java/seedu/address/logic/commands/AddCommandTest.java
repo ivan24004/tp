@@ -215,6 +215,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Set<Skill> getNewSkills(Set<Skill> skillSet) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addGroup(Group group) {
             throw new AssertionError("This method should not be called.");
         }

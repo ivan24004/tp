@@ -54,11 +54,20 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+
+        String[] splitName = name.split("\\s+");
+        StringBuilder trimmedName = new StringBuilder();
+        for (int i = 0; splitName.length > i; i++) {
+            if (!trimmedName.toString().isEmpty()) {
+                trimmedName.append(" ");
+            }
+            trimmedName.append(splitName[i]);
+        }
+
+        if (!Name.isValidName(trimmedName.toString())) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(trimmedName.toString());
     }
 
     /**

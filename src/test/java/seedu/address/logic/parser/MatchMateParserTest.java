@@ -200,4 +200,10 @@ public class MatchMateParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_commandWeirdCasing_succesfullyFindCommand() throws Exception {
+        assertTrue(parser.parseCommand("UnRequiRE-SkIlL" + " Group 1 -s C++")
+                instanceof UnrequireSkillCommand);
+    }
 }

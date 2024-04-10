@@ -53,6 +53,13 @@ The UI consists of four main components:
 ![Ui Components](images/ui-structure.png)
 
 1. **Command Box**: You can type your commands here and press <kbd>Enter</kbd> to execute them. You can also use the <kbd>:fas-caret-up:</kbd> and <kbd>:fas-caret-down:</kbd> arrow keys to navigate through your command history.
+    <box type="info" seamless>
+
+    **Note:** The <kbd>:fas-caret-up:</kbd> key will retrieve the previous command in the command history. When there is no previous command, it will cycle back to the most recent command. The <kbd>:fas-caret-down:</kbd> key will retrieve the next command. However, it will not cycle if you have reached the most recent command.
+
+    This behavior is similar to the command history in a typical terminal.
+
+    </box>
 2. **CourseMate List Panel**: Displays the list of courseMates. Press <kbd>Enter</kbd> or double click to select a courseMate from the courseMate list panel.
 3. **CourseMate Detail Panel**: Displays the details of a selected courseMate.
 4. **Group List Panel**: Displays the list of groups.
@@ -74,7 +81,9 @@ This way, you can quickly add multiple courseMates to a group without having to 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+<div style="page-break-after: always;"></div>
+
+## Commands: General
 
 <box type="info" seamless>
 
@@ -100,6 +109,26 @@ Shows a message that explains how to access the help page.
 
 Format: `help`
 
+
+### Listing all courseMates and groups: `list`
+
+Lists all courseMates and groups in the lists.
+
+Format: `list`
+
+Expected output:
+- `Message: Listed all courseMates and groups`
+
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<div style="page-break-after: always;"></div>
+
+## Commands: CourseMate Management
 
 ### Adding a courseMate: `add`
 
@@ -128,7 +157,7 @@ Consider adding a suffix to the name to differentiate them.
 
 Examples:
 
-- `add John Doe`
+- `add John Doe -e e1234567@u.nus.edu`
 - `add John Doe -e johndoe@example.com -p 87654321 -t johndoe -s Leadership -s C++`
 
 
@@ -149,21 +178,12 @@ Emails should be of the format `local-part@domain` and adhere to the following c
 
 <div style="page-break-after: always;"></div>
 
-### Listing all courseMates and groups: `list`
-
-Lists all courseMates and groups in the lists.
-
-Format: `list`
-
-Expected output:
-- `Message: Listed all courseMates and groups`
-
 
 ### Editing a courseMate : `edit`
 
 Edits an existing courseMate with a given name. This command supports changing the name, email, phone number and telegram handle.
 
-Format: `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]`
+Format: `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]` **(at least one field to edit must be supplied)**
 
 Parameters:
 - `COURSEMATE`: Name of the existing courseMate or aliases (substrings or in hashtag (#) notation).
@@ -171,6 +191,7 @@ Parameters:
 - `NEW_EMAIL` (optional): New email of the courseMate. Refer to the notes above for the acceptable format.
 - `NEW_PHONE_NUMBER` (optional): New phone number of the courseMate. Accept strings with numeric characters only.
 - `NEW_TELEGRAM_HANDLE` (optional): New Telegram handle of the courseMate. Accept strings formed by alphanumeric characters and underscores only, and its length must be between 5 and 32 characters.
+- **At least one field to edit must be supplied.**
     
 <box type="tip" seamless>
 
@@ -250,22 +271,6 @@ Examples:
 - `find-mate John`
 - `find-mate C++`
 
-### Search groups with keywords: `find-group`
-
-Search groups that include all matching keywords in their name.
-
-To match a group's name, the keywords can be a case-insensitive substring of the name.
-
-Format: `find-group KEYPHRASE`
-
-Parameters:
-- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
-
-Examples:
-- `find-group CS2103T G18`
-
-<div style="page-break-after: always;"></div>
-
 ### Deleting a courseMate : `delete`
 
 Deletes a courseMate with a given name.
@@ -278,6 +283,24 @@ Parameters:
 Examples:
 - `delete ##`
 - `delete John`
+
+<div style="page-break-after: always;"></div>
+
+### Give rating to your courseMates: `rate-mate`
+
+Rates courseMates by up to five stars.
+
+Format: `rate-mate COURSEMATE -r RATING`
+
+Parameters:
+- `COURSEMATE`: Name of the existing courseMate to give the rating to. Accept aliases (substrings or in hashtag (#) notation).
+- `RATING`: The rating given, which is a single digit integer between 0 and 5, where 0 signifies that no rating is given.
+
+Examples:
+- `rate-mate Bob -r 5`
+
+
+## Commands: Group Management
 
 ### Create group project: `create-group`
 
@@ -331,18 +354,6 @@ Examples:
 - `delete-member CS2103T G18 -cm Ivan -cm #1`
 - `delete-member CS2103T G18 -cm ##`
 
-### Give rating to your courseMates: `rate-mate`
-
-Rates courseMates by up to five stars.
-
-Format: `rate-mate COURSEMATE -r RATING`
-
-Parameters:
-- `COURSEMATE`: Name of the existing courseMate to give the rating to. Accept aliases (substrings or in hashtag (#) notation).
-- `RATING`: The rating given, which is a single digit integer between 0 and 5, where 0 signifies that no rating is given.
-
-Examples:
-- `rate-mate Bob -r 5`
 
 ### Edit the telegram chat URL of a group: `edit-tg-chat-url`
 
@@ -425,6 +436,20 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+### Search groups with keywords: `find-group`
+
+Search groups that include all matching keywords in their name.
+
+To match a group's name, the keywords can be a case-insensitive substring of the name.
+
+Format: `find-group KEYPHRASE`
+
+Parameters:
+- `KEYPHRASE`: Combination of keywords to be used for the search. Accepts any strings including spaces.
+
+Examples:
+- `find-group CS2103T G18`
+
 
 ### Delete a group: `delete-group`
 Deletes a group.
@@ -436,12 +461,7 @@ Example: `delete-group CS2103T G18`
 Parameters:
 - `GROUP_NAME`: Name of the existing group.
 
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+## Other Features
 
 ### Save and load the state of app
 
@@ -488,7 +508,7 @@ Action     | Format, Examples
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
 **Delete group member**    |   `delete-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
 **Delete skill** | `delete-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
-**Edit courseMate**   | `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
+**Edit courseMate**   | `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]​`<br>**(at least one field to edit must be supplied)**<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
 **Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME -t NEW_TELEGRAM_CHAT_URL` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Find courseMate**   | `find-mate KEYPHRASE`<br> e.g., `find John`
 **Find group**   | `find-group KEYPHRASE`<br> e.g., `find CS2103T`

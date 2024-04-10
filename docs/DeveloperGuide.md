@@ -158,144 +158,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### UI Coursemate Detail Panel
+### [UI] Coursemate Detail Panel
 
 #### Implementation
 
-The coursemate detail panel in the UI shows the details of a selected or recently processed coursemate. It is implemented in the `CourseMateDetailPanel` class.
+The courseMate detail panel in the UI shows the details of a selected or recently processed courseMate. It is implemented in the `CourseMateDetailPanel` class.
 
-The `CourseMateDetailPanel` class is mutable, the displayed coursemate can be change by calling the `CourseMateDetailPanel#loadCourseMate(CourseMate)` method.
+The `CourseMateDetailPanel` class is mutable, the displayed courseMate can be change by calling the `CourseMateDetailPanel#loadCourseMate(CourseMate)` method.
 
-The following shows the sequence diagrams of how the UI component loads the coursemates into the coursemate detail panel dynamically.
+The following shows the sequence diagrams of how the UI component loads the courseMates into the courseMate detail panel dynamically.
 
-1. The user selects a coursemate from the coursemate list panel.
+1. The user selects a courseMate from the courseMate list panel.
 
    <puml src="diagrams/CourseMateListSelectSequenceDiagram.puml" alt="CourseMateListSelectSequenceDiagram" />
 
-   The main window implements the functional interface `CourseMateDetailPanel#CourseMateSelectHandler` to reflect the selected coursemate in the coursemate detail panel and the `Logic`, which saves the selected coursemate in the `Model` used for future commands with the `##` notation.
+   The main window implements the functional interface `CourseMateDetailPanel#CourseMateSelectHandler` to reflect the selected courseMate in the courseMate detail panel and the `Logic`, which saves the selected courseMate in the `Model` used for future commands with the `##` notation.
 
-2. The user executes a command that modifies the selected coursemate.
+2. The user executes a command that modifies the selected courseMate.
 
     <puml src="diagrams/ProcessedCourseMateSequenceDiagram.puml" alt="ProcessedCourseMateSequenceDiagram" />
 
-    The `CommandResult` object returned by the `Logic` component contains a flag that indicates if the command involves one processed coursemate. If so, `CourseMateDetailPanel` is updated with the processed coursemate.
+    The `CommandResult` object returned by the `Logic` component contains a flag that indicates if the command involves one processed courseMate. If so, `CourseMateDetailPanel` is updated with the processed courseMate.
 
-Two types of selection in the coursemate list panel are supported: double click and pressing the enter key. This requires two different event handlers to be implemented in the `CourseMateListPanel` class as shown below. These event handlers are instantiated and set as the event handlers for the `ListView` object in the constructor of `CourseMateListPanel`.
+Two types of selection in the courseMate list panel are supported: double click and pressing the enter key. This requires two different event handlers to be implemented in the `CourseMateListPanel` class as shown below. These event handlers are instantiated and set as the event handlers for the `ListView` object in the constructor of `CourseMateListPanel`.
 
 <puml src="diagrams/CourseMateListPanelClassDiagram.puml" alt="CourseMateListPanelClassDiagram" />
 
 
 #### Alternatives Considered
 
-* **Alternative 1:** The coursemate detail panel is immutable, and a new panel is created for each coursemate.
-  * Pros: Easier to implement since the other UI components no longer have to keep a reference to the coursemate detail panel.
+* **Alternative 1:** The courseMate detail panel is immutable, and a new panel is created for each courseMate.
+  * Pros: Easier to implement since the other UI components no longer have to keep a reference to the courseMate detail panel.
   * Cons: It makes it unclear that `MainWindow` and `CourseMateDetailPanel` have a one-to-one whole-part relationship.
 
-* **Alternative 2:** Allow the coursemate list panel to directly update the coursemate detail panel.
+* **Alternative 2:** Allow the courseMate list panel to directly update the courseMate detail panel.
   * Pros: Simplifies the code as the `MainWindow` no longer has to act as a middleman. The functional interface `CourseMateDetailPanel#CourseMateSelectHandler` can be removed.
   * Cons: The `CourseMateListPanel` and `CourseMateDetailPanel` are more tightly coupled. This increases maintenance costs.
 
-* **Alternative 3:** Give full control to the `Logic` component to update the coursemate detail panel.
-  * Pros: We no longer need to include an extra field in the `CommandResult` object to indicate if the command involves one processed coursemate.
+* **Alternative 3:** Give full control to the `Logic` component to update the courseMate detail panel.
+  * Pros: We no longer need to include an extra field in the `CommandResult` object to indicate if the command involves one processed courseMate.
   * Cons: The `Logic` component is now responsible for updating the UI, which is not ideal as the `Logic` component should not be aware of the UI's click and press events.
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th courseMate in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new courseMate. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the courseMate was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the courseMate being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -329,22 +231,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                         | I want to …​                 | So that I can…​                                                        |
 |----------|------------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | student | easily add new coursemates with their information |  |
-| `* * *`  | careless user | edit information in the coursemate list | fix typos or inaccurate information about my friends mistakenly inputted into the app |
-| `* * *`  | careless user | delete an entry from the coursemate list | remove information mistakenly added to the app |
-| `* * *`  | student | add or remove skills of a coursemate | remember the strengths of each coursemate and consider them during team formation |
+| `* * *`  | student | easily add new courseMates with their information |  |
+| `* * *`  | careless user | edit information in the courseMate list | fix typos or inaccurate information about my friends mistakenly inputted into the app |
+| `* * *`  | careless user | delete an entry from the courseMate list | remove information mistakenly added to the app |
+| `* * *`  | student | add or remove skills of a courseMate | remember the strengths of each courseMate and consider them during team formation |
 | `* * *`  | lazy user | search through my list using specific keywords | avoid scrolling through the entire list |
-| `* * *`  | student finding group project partners | search for coursemates out of my contact list with a specific skillset | find a partner who is interested in or good at that particular course or subject |
-| `* * *`  | student forming group project teams | create a group project within the app and add coursemates to the group | remember who is already in the team |
-| `* * *`  | student forming group project teams | remove coursemates from a group | maintain information correctness after some coursemates are mistakenly added to the group |
+| `* * *`  | student finding group project partners | search for courseMates out of my contact list with a specific skillset | find a partner who is interested in or good at that particular course or subject |
+| `* * *`  | student forming group project teams | create a group project within the app and add courseMates to the group | remember who is already in the team |
+| `* * *`  | student forming group project teams | remove courseMates from a group | maintain information correctness after some courseMates are mistakenly added to the group |
+| `* * *`    | student forming group project teams | set some skills as required in a group | ensure that the group has the necessary skills to complete the project |
+| `* * *`    | student forming group project teams | look for courseMate recommendations based on the required skills | find courseMates who can complement the skills of the existing group members |
 | `* *`    | user who may not have the best eyesight | change the font size of texts in the app | I can adjust to a size most suited to me |
 | `* *`    | clueless student new to using the app | know what skills I should look out for in my friends | |
 | `* *`    | lazy user | autocomplete some commands with possible inputs | complete my tasks faster |
 | `* *`    | busy user | use the "up" arrow key for the app to display the previous command | save time typing a series of similar commands with common substrings |
 | `* *`    | new user | easily find a list of commands and how they are used | start using the app without difficulties |
 | `* *`    | student finding group project partners among acquaintances | maintain the contact details of my friends (telegram handles) in the app | easily contact potential groupmates who I don't frequently contact |
+| `* *`    | students working in many project teams | maintain the telegram group chat links in the app | easily contact my project groupmates for different projects |
 | `* *`    | student finding group project partners | input the courses each of my friends are planning to take or confirmed to take | limit my search to friends taking that specific course only |
-| `* *`    | student finding group project partners | mark coursemates as either friends or acquaintances | prioritise creating groups with some friends over acquaintances |
+| `* *`    | student finding group project partners | mark courseMates as either friends or acquaintances | prioritise creating groups with some friends over acquaintances |
 | `* *`    | student forming a group | set some skills as extremely important | prioritise those skills while searching for team members |
 | `* *`    | student creating a group | search for possible combinations that match the required types of roles and skills | form project groups that require different kinds of roles or skills per member |
 | `* *`    | student forming a group | save a certain filter or search setting with a label | reuse my past search setting when I take courses of similar nature |
@@ -580,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. **Environment**: Should work on any _mainstream_ OS as long as it has Java `11` or above installed.
 2. **Performance**: Should respond to user interaction within 3 seconds at most for typical usage (unless it is lagging due to reasons external to the app).
-3. **Performance**: Should be able to hold up to 1000 _coursemates_ without a noticeable sluggishness in performance (as specified above) for typical usage.
+3. **Performance**: Should be able to hold up to 1000 _courseMates_ without a noticeable sluggishness in performance (as specified above) for typical usage.
 4. **Resilience**: Should gracefully handle commonly anticipated errors (e.g. incorrect _command_ input) without crashing or losing saved data.
 5. **Accessibility**: Should notify the user whether a _command_ is successful or has failed.
 6. **Accessibility**: Should be accessible to English speakers with average typing speed.
@@ -591,8 +496,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Command**: A user input that will cause the application to perform an operation according to the MatchMate UserGuide
 * **Coursemate**: A friend or classmate that you expect to form a _group_ based on certain _skills_ they might have
-* **Group**: A grouping/team of _coursemates_ for a course, project, or activity
-* **Skill**: Knowledge, ability, or experience that a _coursemate_ has 
+* **Group**: A grouping/team of _courseMates_ for a course, project, or activity
+* **Skill**: Knowledge, ability, or experience that a _courseMate_ has 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Creating an edit group command**: Currently, the user can only edit the group name of a project group by deleting the group and re-creating it. All information in the group will be cleared after that. We plan to implement an edit group command that allows the user to edit the group name without losing the information in the group, by supplying the original group name and the new group name.
+
+2. **Improved filtering when adding or removing members in a group with similar names**: When trying to add or remove a member from a group using a substring of the member's name, the app currently lists all courseMates with the substring in their name, regardless of whether they are already in the group. This causes the user having to re-try the command using the hashtag notation unnecessarily. We plan to enhance this filtering by excluding members that are already in the group for the `add-member` command, and excluding members that are not in the group for the `remove-member` command.
+
+3. **Provide warnings for `require-skill` and `unrequire-skill` when skill is already required / unrequired**: Currently, the app does not provide any feedback when a user tries to require a skill that is already required, or unrequire a skill that is already unrequired. We plan to provide a warning message in such cases to inform the user that the command has no effect, and suggest the user to check for typos.
+
+4. **Provide warnings for `mark-important` and `unmark-important` when skill is already marked / unmarked as important**: Currently, the app does not provide any feedback when a user tries to mark a skill as important that is already marked as important, or unmark a skill that is already unmarked. We plan to provide a warning message in such cases to inform the user that the command has no effect, and suggest the user to check for typos.
+
+5. **Provide warnings for `add-skill` and `delete-skill` when skill is already added / deleted**: Currently, the app does not provide any feedback when a user tries to add a skill that is already added, or delete a skill that is already deleted. We plan to provide a warning message in such cases to inform the user that the command has no effect, and suggest the user to check for typos.
+
+6. **Allow case-insensitive command names**: Currently, the app only recognizes command names in lowercase. We plan to allow users to enter the command names in any case (e.g. `Add`, `aDd`, `ADD`), and the app will recognize them as the same command.
+
 
 
 --------------------------------------------------------------------------------------------------------------------

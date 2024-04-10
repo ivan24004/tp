@@ -199,6 +199,33 @@ Two types of selection in the courseMate list panel are supported: double click 
   * Pros: We no longer need to include an extra field in the `CommandResult` object to indicate if the command involves one processed courseMate.
   * Cons: The `Logic` component is now responsible for updating the UI, which is not ideal as the `Logic` component should not be aware of the UI's click and press events.
 
+### [Model & Storage] Groups
+
+#### Implementation
+
+A `Group` is a list of unique courseMates with a few extra metadata. Thus, it makes sense for it to inherit from `UniqueCourseMateList`.
+
+A `Group` is given a unique case-sensitive name when constructed. It may also be given a set of unique `Skill` objects, unique member `CourseMate` objects, and an optional `TelegramChat` object.
+
+`CourseMate` objects are kept unique by ensuring no two `CourseMate` objects have the same name, using the `CourseMate::isSameCourseMate` method. `Skill` and `Name` objects are kept unique using their respective `equals` methods.
+
+A `GroupList` is also used to maintain the list of all unique groups created. The model manager maintains a single copy of this `GroupList`.
+
+The `GroupList` object maintains a single copy of a `UniqueGroupList`, this class enforces uniqueness using `Group::isSameGroup` and also maintains an observable copy of the list for the UI.
+
+<puml src="diagrams/GroupClassDiagram.puml" alt="GroupClassDiagram" />
+
+### Alternatives Considered
+
+* **Alternative 1:** `GroupList` is a singleton class.
+  * Pros: It makes sense that we only have a single `GroupList` at any one time in normal usage.
+  * Cons: As with most singletons, it does make testing more difficult as different tests will have a harder time using different lists of groups.
+* **Alternative 2:** `Group` does not inherit `UniqueCourseMateList`.
+  * Pros: It isn't exactly clear-cut that `Group` *is a* `UniqueCourseMateList`, since `UniqueCourseMateList` is also used to display info to the UI through the observer pattern, causing potential for unneeded coupling.
+  * Cons: It does make enough sense that a `Group` has *most* properties of a `UniqueCourseMateList`, using another class may also result in code duplication.
+* **Alternative 3:** `Group` objects are given an ID instead of being kept unique through their names.
+  * Pros: It allows for multiple `Group` objects to have the same name, and an ID makes more sense conceptually to differentiate objects than a `Name`.
+  * Cons: It is not clear that multiple `Group` objects should be allowed to have the same name, it may also be harder to uniquely refer to groups in the app if you have to use an ID to differentiate.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -238,7 +238,7 @@ Format: `add-skill COURSEMATE -s SKILL [-s SKILL]...`
 
 Parameters:
 - `COURSEMATE`: Name of the existing courseMate. Accept aliases (substrings or in hashtag (#) notation).
-- `SKILL` (one or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
+- `SKILL` (one or multiple allowed): Skill(s) of the courseMate. Accepts any strings containing ascii characters (characters with ascii value from 0-127), except that words cannot start with the hyphen (-) character. 
 
 Examples:
 - `add-skill John Doe -s C++ -s Leadership`

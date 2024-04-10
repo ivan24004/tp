@@ -90,6 +90,8 @@ public class MainApp extends Application {
             contactListOptional = storage.readContactList();
             if (contactListOptional.isEmpty()) {
                 isEmpty = true;
+            } else {
+                initialContactList = contactListOptional.get();
             }
         } catch (DataLoadingException e) {
             isCorrupted = true;
@@ -103,6 +105,8 @@ public class MainApp extends Application {
             groupListOptional = storage.readGroupList();
             if (groupListOptional.isEmpty()) {
                 isEmpty = true;
+            } else {
+                initialGroupList = groupListOptional.get();
             }
         } catch (DataLoadingException e) {
             isCorrupted = true;

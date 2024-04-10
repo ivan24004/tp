@@ -5,7 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +21,7 @@ import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.skill.Skill;
 
 /**
  * Represents the in-memory model of the contact list data.
@@ -198,6 +201,33 @@ public class ModelManager implements Model {
         } else {
             return contactList.findCourseMate(query.getName());
         }
+    }
+
+    //=========== Skills ========================================================================================
+
+    /** Retrieves the newly added skills not in the current courseMate list and group list. */
+    @Override
+    public Set<Skill> getNewSkills(Set<Skill> skillSet) {
+        List<CourseMate> getCourseMateList = contactList.getCourseMateList();
+        Set<Skill> currentSkills = new HashSet<>();
+        for (CourseMate courseMate : getCourseMateList) {
+            Set<Skill> courseMateSkills = courseMate.getSkills();
+            currentSkills.addAll(courseMateSkills);
+        }
+
+        List<Group> getGroupList = groupList.getGroupList();
+        for (Group group : getGroupList) {
+            Set<Skill> groupSkills = group.getSkills();
+            currentSkills.addAll(groupSkills);
+        }
+
+        Set<Skill> newSkills = new HashSet<>();
+        for (Skill skill : skillSet) {
+            if (!currentSkills.contains(skill)) {
+                newSkills.add(skill);
+            }
+        }
+        return newSkills;
     }
 
     //=========== Filtered CourseMate List Accessors =============================================================

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.coursemate.CourseMate;
@@ -81,7 +82,7 @@ public class CreateGroupCommand extends Command {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
 
-        // TODO: check if skills already exists or not, give warning if it doesn't
+        Set<Skill> newSkills = model.getNewSkills(skillSet);
 
         Group toAdd = new Group(groupName, courseMateList, skillSet, telegramChat);
         if (model.hasGroup(toAdd)) {
@@ -89,7 +90,8 @@ public class CreateGroupCommand extends Command {
         }
         model.addGroup(toAdd);
 
-        return new CommandResult(String.format(MESSAGE_GROUP_CREATED, groupName));
+        return new CommandResult(Messages.messageNewSkill(newSkills)
+                + String.format(MESSAGE_GROUP_CREATED, groupName));
     }
 
     @Override

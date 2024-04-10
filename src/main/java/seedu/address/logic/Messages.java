@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.skill.Skill;
 
 /**
  * Container for user visible messages.
@@ -36,5 +37,31 @@ public class Messages {
                 Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
+    }
+
+    /**
+     * Creates a warning message for newly added skills that are not in the database.
+     * @param newSkills - The set of skills that are new to the courseMate list.
+     * @return A String containing the warning message.
+     */
+    public static String messageNewSkill(Set<Skill> newSkills) {
+        if (newSkills.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("WARNING: New skills detected. Please verify for accuracy to avoid any unintended actions: ");
+        int size = newSkills.size();
+        int count = 0;
+        for (Skill skill : newSkills) {
+            sb.append(skill.toString());
+            count++;
+            if (count < size) {
+                sb.append(", ");
+            } else {
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
     }
 }

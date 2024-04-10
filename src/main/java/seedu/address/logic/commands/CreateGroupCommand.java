@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -71,18 +73,30 @@ public class CreateGroupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<CourseMate> courseMateList;
+
+        List<QueryableCourseMate> queryableCourseMateList = new ArrayList<>(queryableCourseMateSet);
+        List<List<CourseMate>> courseMateChoicesList;
         try {
-            courseMateList = queryableCourseMateSet
+            courseMateChoicesList = queryableCourseMateList
                     .stream()
                     .map(model::findCourseMate)
-                    .map(x -> x.get(0))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         } catch (CourseMateNotFoundException e) {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
 
         Set<Skill> newSkills = model.getNewSkills(skillSet);
+
+        List<CourseMate> courseMateList = new ArrayList<>();
+        int index = 0;
+        for (List<CourseMate> courseMateAddList: courseMateChoicesList) {
+            //If there are more than 1 matching name
+            if (courseMateAddList.size() > 1) {
+                return new SimilarNameCommand(queryableCourseMateList.get(index)).execute(model);
+            }
+            courseMateList.add(courseMateAddList.get(0));
+            index += 1;
+        }
 
         Group toAdd = new Group(groupName, courseMateList, skillSet, telegramChat);
         if (model.hasGroup(toAdd)) {

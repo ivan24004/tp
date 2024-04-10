@@ -60,7 +60,7 @@ class JsonAdaptedCourseMate {
         if (source.getPhone() != null) {
             phone = source.getPhone().value;
         } else {
-            phone = null;
+            phone = "";
         }
         if (source.getTelegramHandle() != null) {
             telegramHandle = source.getTelegramHandle().value;
@@ -95,10 +95,13 @@ class JsonAdaptedCourseMate {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!phone.isEmpty() && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        Phone modelPhone = null;
+        if (!phone.isEmpty()) {
+            modelPhone = new Phone(phone);
+        }
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -112,11 +115,11 @@ class JsonAdaptedCourseMate {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
-        if (telegramHandle != "" && !TelegramHandle.isValidTelegramHandle(telegramHandle)) {
+        if (!telegramHandle.isEmpty() && !TelegramHandle.isValidTelegramHandle(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         TelegramHandle modelTelegramHandle = null;
-        if (telegramHandle != "") {
+        if (!telegramHandle.isEmpty()) {
             modelTelegramHandle = new TelegramHandle(telegramHandle);
         }
 

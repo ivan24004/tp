@@ -38,7 +38,7 @@ public class Skill {
     }
 
     public String importantStringRepresentation() {
-        return this.important ? "[!] " : "";
+        return this.important ? "[❗] " : "";
     }
 
     public boolean getImportant() {

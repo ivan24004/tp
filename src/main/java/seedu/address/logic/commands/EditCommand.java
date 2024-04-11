@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,18 +32,18 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the coursemate identified "
-            + "by the coursemate's name or the index number used in the displayed coursemate list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the courseMate identified "
+            + "by the courseMate's name or the index number used in the displayed courseMate list. "
             + "Existing values will be overwritten by the input values.\n"
             + "NAME can be specified either by partial name (substrings allowed) or by the '#' notation.\n"
             + "Parameters: NAME "
             + "[" + PREFIX_NAME + " NEW_NAME] "
-            + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
             + "[" + PREFIX_EMAIL + " NEW_EMAIL] "
+            + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
             + "[" + PREFIX_TELEGRAM + " NEW_TELEGRAM_HANDLE]\n"
             + "Example: " + COMMAND_WORD + " John Doe "
-            + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com";
+            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_PHONE + " 91234567 ";
 
     public static final String MESSAGE_EDIT_COURSE_MATE_SUCCESS = "Edited CourseMate";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,8 +90,6 @@ public class EditCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
-        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(MESSAGE_EDIT_COURSE_MATE_SUCCESS, false, false, true);
     }

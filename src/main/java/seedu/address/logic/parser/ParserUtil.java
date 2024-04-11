@@ -24,6 +24,8 @@ import seedu.address.model.skill.Skill;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SKILL = "Skill should only contain ASCII characters (characters with "
+            + "ASCII value ranging from 0 to 127).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -54,11 +56,20 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+
+        String[] splitName = name.split("\\s+");
+        StringBuilder trimmedName = new StringBuilder();
+        for (int i = 0; splitName.length > i; i++) {
+            if (!trimmedName.toString().isEmpty()) {
+                trimmedName.append(" ");
+            }
+            trimmedName.append(splitName[i]);
+        }
+
+        if (!Name.isValidName(trimmedName.toString())) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(trimmedName.toString());
     }
 
     /**
@@ -113,6 +124,12 @@ public class ParserUtil {
         requireNonNull(skills);
         final Set<Skill> skillSet = new HashSet<>();
         for (String skillName : skills) {
+            for (int i = 0; i < skillName.length(); i++) {
+                int current = skillName.charAt(i);
+                if (current > 127 || current < 0) {
+                    throw new ParseException(MESSAGE_INVALID_SKILL);
+                }
+            }
             skillSet.add(parseSkill(skillName));
         }
         return skillSet;

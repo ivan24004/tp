@@ -57,6 +57,13 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseName_validValueWithDuplicateWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = "Alex        Yeoh";
+        Name expectedName = new Name("Alex Yeoh");
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }

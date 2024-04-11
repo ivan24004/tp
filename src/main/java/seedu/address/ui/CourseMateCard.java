@@ -54,10 +54,13 @@ public class CourseMateCard extends UiPart<Region> {
         this.courseMate = courseMate;
         id.setText("#" + displayedIndex + " ");
         name.setText(courseMate.getName().fullName);
-        phone.setText(courseMate.getPhone().value);
         email.setText(courseMate.getEmail().value);
 
-
+        if (courseMate.getPhone() == null) {
+            cardBox.getChildren().remove(phone);
+        } else {
+            phone.setText(courseMate.getPhone().value);
+        }
         if (courseMate.getTelegramHandle() == null) {
             cardBox.getChildren().remove(telegramHandle);
         } else {

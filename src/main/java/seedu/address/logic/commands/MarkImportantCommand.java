@@ -25,15 +25,16 @@ import seedu.address.model.skill.Skill;
 public class MarkImportantCommand extends Command {
     public static final String COMMAND_WORD = "mark-important";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a group skill to important. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a group skill to important.\n"
             + "Parameters: GROUP_NAME (group must exist) "
+            + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD
             + " CS2103T "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 
-    public static final String MESSAGE_SUCCESS = "Skills successfully marked as important";
+    public static final String MESSAGE_SUCCESS = "Skill(s) successfully marked as important";
     public static final String MESSAGE_SKILL_NOT_PRESENT = "This group does not have one of the skills provided.";
 
     public static final String MESSAGE_NOT_EDITED = "At least one skill to mark must be provided.";

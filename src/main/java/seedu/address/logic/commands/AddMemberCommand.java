@@ -30,7 +30,7 @@ public class AddMemberCommand extends Command {
             + ": Adds CourseMates as members to an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: GROUP_NAME (group must exist) "
-            + PREFIX_COURSEMATE + " COURSEMATE"
+            + PREFIX_COURSEMATE + " COURSEMATE "
             + "[" + PREFIX_COURSEMATE + " COURSEMATE" + "]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T GROUP "
             + PREFIX_COURSEMATE + " #1 "

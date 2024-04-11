@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class RateMateCommand extends Command {
     public static final String COMMAND_WORD = "rate-mate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Give a rating to a coursemate by up to five stars.\n"
+            + ": Give a rating to a courseMate by up to five stars.\n"
             + "COURSEMATE can be specified either by name or by the '#' notation.\n"
             + "RATING can be specified by a single digit integer between 0 and 5, where 0 means no rating is given.\n"
             + "Parameters: COURSEMATE "
@@ -72,7 +71,6 @@ public class RateMateCommand extends Command {
                 rating);
 
         model.setCourseMate(courseMateToRate, ratedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(ratedCourseMate);
         return new CommandResult(MESSAGE_RATE_COURSE_MATE_SUCCESS, false, false, true);
     }

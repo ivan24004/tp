@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,8 +27,8 @@ public class DeleteSkillCommand extends Command {
     public static final String COMMAND_WORD = "delete-skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes skills of a coursemate. "
-            + "NAME can be specified either by full name or by the '#' notation.\n"
-            + "Parameters: NAME "
+            + "CourseMates can be specified either by name or by the '#' notation.\n"
+            + "Parameters: COURSEMATE "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " #1 "
@@ -38,8 +37,10 @@ public class DeleteSkillCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Skill(s) are successfully deleted";
     public static final String MESSAGE_NOT_EDITED = "At least one skill should be provided.";
-    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list";
-    public static final String MESSAGE_SKILL_NOT_PRESENT = "This courseMate does not have one of the skills provided.";
+    public static final String MESSAGE_DUPLICATE_COURSE_MATE = "This courseMate already exists in the contact list. \n"
+            + "Consider adding a suffix to disambiguate";
+    public static final String MESSAGE_SKILL_NOT_PRESENT =
+            "This courseMate does not have one or more of the skills provided.";
 
     private final QueryableCourseMate queryableCourseMate;
     private final DeleteSkillDescriptor deleteSkillDescriptor;
@@ -83,7 +84,6 @@ public class DeleteSkillCommand extends Command {
         }
 
         model.setCourseMate(courseMateToEdit, editedCourseMate);
-        model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }

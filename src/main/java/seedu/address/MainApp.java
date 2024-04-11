@@ -78,36 +78,53 @@ public class MainApp extends Application {
      * or an empty contact list will be used instead if errors occur when reading {@code storage}'s contact list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getContactListFilePath());
+        logger.info("Using contact list file : " + storage.getContactListFilePath());
+        logger.info("Using group list file : " + storage.getGroupListFilePath());
+
+        boolean isEmpty = false;
+        boolean isCorrupted = false;
 
         Optional<ReadOnlyContactList> contactListOptional;
-        ReadOnlyContactList initialContactList;
+        ReadOnlyContactList initialContactList = null;
         try {
             contactListOptional = storage.readContactList();
-            if (!contactListOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getContactListFilePath()
-                        + " populated with a sample ContactList.");
+            if (contactListOptional.isEmpty()) {
+                isEmpty = true;
+            } else {
+                initialContactList = contactListOptional.get();
             }
-            initialContactList = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
         } catch (DataLoadingException e) {
+            isCorrupted = true;
             logger.warning("Data file at " + storage.getContactListFilePath() + " could not be loaded."
                     + " Will be starting with an empty ContactList.");
-            initialContactList = new ContactList();
         }
-        Optional<ReadOnlyGroupList> groupListOptional;
-        ReadOnlyGroupList initialGroupList;
 
+        Optional<ReadOnlyGroupList> groupListOptional;
+        ReadOnlyGroupList initialGroupList = null;
         try {
             groupListOptional = storage.readGroupList();
-            if (!groupListOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getGroupListFilePath()
-                        + " starting with an empty GroupList.");
+            if (groupListOptional.isEmpty()) {
+                isEmpty = true;
+            } else {
+                initialGroupList = groupListOptional.get();
             }
-            initialGroupList = groupListOptional.orElseGet(SampleDataUtil::getSampleGroupList);
         } catch (DataLoadingException e) {
+            isCorrupted = true;
             logger.warning("Data file at " + storage.getGroupListFilePath() + " could not be loaded."
                     + " Will be starting with an empty GroupList.");
+        }
+
+        if (isCorrupted) {
+            initialContactList = new ContactList();
             initialGroupList = new GroupList();
+        } else if (isEmpty) {
+            logger.info("Creating a new contact list file " + storage.getContactListFilePath()
+                    + " populated with a sample ContactList.");
+            logger.info("Creating a new group list file " + storage.getGroupListFilePath()
+                    + " starting with an empty GroupList.");
+
+            initialContactList = SampleDataUtil.getSampleContactList();
+            initialGroupList = SampleDataUtil.getSampleGroupList();
         }
 
         return new ModelManager(initialContactList, userPrefs, initialGroupList);

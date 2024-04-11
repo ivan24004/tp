@@ -575,29 +575,169 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. To quit and shut down the app, either type exit, or click on the x button on the top right corner.
+
+### Adding a courseMate
+1. Prerequisite: The MatchMate app has been launched.
+
+2. Test case: `add Ivan -e ivan@gmail.com -p 9427318 -s C++`<br>
+   Expected: Successfully adds ivan with the corresponding email, phone number, and skill
+
+3. Test case: `add Benson -e benson@gmail.com`<br>
+   Expected: Successfully adds Benson with his email. Phone number and skills are optional fields.
+
+### Editing a courseMate
+1. Prerequisites: You have added Benson and Ivan into your contact list, by following the commands in the previous section.
+
+1. Test case: `edit #1 -n Alex`<br>
+Expected: Edits the first contact's name to Alex
+
+1. Test case: `edit Ivan -n Ivan Tan`<br>
+Expected: Edits Ivan's name to Ivan Tan
+
+1. Test case: `edit Ben -n Benson CS`<br>
+Expected: Edits Benson's name to Benson CS. Edit utilizes substring search, and because there's only 1 contact with a Ben substring, thus Benson's name gets updated to Benson CS.
+
+### Adding a skill to a courseMate
+1. Prerequisites: You have added Benson and Ivan into your contact list, by following the commands in the previous section.
+
+1. Test case: `add-skill Ivan Tan -s C++`<br>
+Expected: Adds C++ skill to Ivan Tan
+
+1. Test case: `add-skill Benson CS -s JS -s SQL`<br>
+Expected: Adds JS and SQL skill to Benson, and also gives a warning that one if not more skils added have not been previously added to other contacts.
+This error message serves to warn for any potential typos when adding skills
+
+### Deleting a skill from a courseMate
+1. Prerequisites: You have added C++ and React skills to Ivan as well as JS and SQL skills to Benson, by following the commands in the previous section.
+
+1. Test case: `delete-skill Ivan Tan -s React`<br>
+Expected: React skill is deleted from Ivan Tan
+
+1. Test case: `delete-skill Benson CS -s JS -s SQL` <br>
+Expected: JS and SQL skills are deleted from Benson
+
+### Search courseMates with keywords
+1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
+
+1. Test case: `find-mate Ivan` <br>
+Expected: Finds Ivan Tan in the contact list
+
+1. Test case: `find-mate a` <br>
+Expected: Finds all courseMates whose names/skills contain a
+
+1. Test case: `find-mate C++` <br>
+Expected: Finds all courseMates whose names/skills contain C++
 
 ### Deleting a courseMate
 
-1. Deleting a courseMate while all courseMates are being shown
+1. Prerequisites: List all courseMates using the `list` command. Multiple courseMates in the list.
 
-   1. Prerequisites: List all courseMates using the `list` command. Multiple courseMates in the list.
+1. Test case: `delete #1` <br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Test case: `delete #0` <br>
+   Expected: No courseMate is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No courseMate is deleted. Error details shown in the status message. Status bar remains the same.
+1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Rate a courseMate
 
-1. _{ more test cases …​ }_
+1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
 
-### Saving data
+1. Test case: `rate-mate Ivan Tan -r 4`<br>
+Expected: Shows 4 stars out of 5 on Ivan's contact card.
 
-1. Dealing with missing/corrupted data files
+2. Test case: `rate-mate Benson CS -r 6`<br>
+Expected: Shows an error message saying that ratings can only be between 0 and 5.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Creating a group
+1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
 
-1. _{ more test cases …​ }_
+1. Test case: `create-group CS project -cm Ivan -t https://t.me/+WDTg34uuUlH8Ml2d -s C++` <br>
+Expected: Creates a group called CS project, with Ivan as one of its group members. Also adds a telegram link for the group, and adds C++ as a skill required in the group.
+The skill C++ is marked green as one of its members, Ivan, has C++ as one of his skills.
+
+1. Test case: `create-group ES2660 -cm Benson -s Leadership` <br>
+Expected: Creates a group called ES 2660, with Benson as one of its group members. Also adds a Leadership as a skill required in the group.
+A warning is also given as leadership is not a skill that has been added anywhere. The skill Leadership is red as its only member, as Benson does not have Leadership skill
+
+### Adding courseMates to a group
+1. Prerequisites: You have followed all the steps along and added two new contacts Ivan and Benson, as well as created two new groups "CS project" and "ES2660"
+
+2. Test case: `add-skill Ivan -s Leadership` then `add-member ES2660 -cm Ivan` <br>
+Expected: The first command adds a skill called Leadership to Ivan, then add Ivan to the ES2660 group. As a result, the Leadership skill in ES2660 turns to green as one of its group members
+has that skill
+
+### Deleting courseMates from a group
+1. Prerequisites: You have followed all the steps along and added Ivan and Benson to the corresponding groups "CS project" and "ES2660"
+
+2. Test case: `delete-member ES2660 -cm Ivan` <br>
+Expected: Deletes Ivan from the ES2660 group. This causes the skill Leadership to go back to red as it has not been fulfilled.
+
+2. Test case: `delete-member CS project -cm Benson` <br>
+Expected: The command fails as Benson is not in the CS project group. Relevant error message is displayed
+
+
+### Edit group telegram url
+1. Prerequisites: You have added the groups "CS project" and "ES2660"
+
+2. Test case: `edit-tg-chat-url ES2660 -t https://t.me/+HWasdo2831Uasodi` <br>
+Expected: Creates a telegram group chat link for ES2660
+
+3. Test case: `edit-tg-chat-url ES2660 -t https://+HWasdo2831Uasodi` <br>
+Expected: The command fails as the url given is not a telegram link. Relevant error message is displayed
+
+### Require skills in a group
+1. Prerequisites: You have added the groups "CS project" and "ES2660"
+
+2. Test case: `require-skill ES2660 -s Presentation` <br>
+Expected: Adds a new required skill for ES2660. Also gives a warning as Presentation is a skill that has not been added anywhere before.
+
+### Unrequire skills in a group
+1. Prerequisites: You have added the groups "CS project" and "ES2660", as well as added C++ skill for CS project as well as Leadership and Presentation skills for ES2660
+
+2. Test case: `unrequire-skill ES2660 -s Presentation` <br>
+Expected: Removes Presentation skill from ES2660
+
+3. Test case: `unrequire-skill CS project -s Java` <br>
+   Expected: The command fails as Java is not a required skill in CS project. Relevant error message is displayed
+
+
+### Mark important skills in a group
+1. Prerequisites: You have added the groups "CS project" and "ES2660", and CS project requires C++ skill while ES2660 requires Leadership skill
+
+2. Test case: `mark-important ES2660 -s Leadership` <br>
+Expected: Shows an exclamation mark besides the Leadership skill signifying that it is important
+
+2. Test case: `mark-important CS project -s Java` <br>
+   Expected: The command fails as Java is not a required skill in CS project. Relevant error message is displayed
+
+### Unmark important skills in a group
+1. Prerequisites: You have added the groups "CS project" and "ES2660", and CS project requires C++ skill while ES2660 requires Leadership skill
+
+2. Test case: `unmark-important ES2660 -s Leadership` <br>
+   Expected: Removes the exclamation mark besides the Leadership skill
+
+### Suggest courseMates for group
+1. Prerequisites: You have added the groups "CS project" and "ES2660", and CS project requires C++ skill while ES2660 requires Leadership skill. 
+Ivan is in the CS project group and Benson is in the ES2660 group.
+
+2. Test case: `suggest-mate CS project` <br>
+Expected: Gives a message saying "All required skills have already been fulfilled. Consider adding what skills you're looking for?"
+
+3. Test case: `suggest-mate ES2660` <br>
+Expected: Shows Ivan Tan as the only courseMate that has the Leadership skill.
+
+### Search groups with keywords
+1. Prerequisites: You are using the preloaded data and have added the groups "CS project" and "ES2660"
+
+2. Test case: `find-group CS` <br>
+Expected: Shows 3 groups: CS2103T, CS2101, CS Project as 3 of them contains CS in the group name
+
+### Delete a group
+1. Prerequisites: You are using the preloaded data and have added the groups "CS project" and "ES2660"
+
+2. Test case: `delete-group ES2660` <br>
+Expected: Deletes the group ES2660

@@ -247,7 +247,7 @@ The `GroupList` object maintains a single copy of a `UniqueGroupList`, this clas
 
 **Target user profile**:
 
-John in a NUS computer science student taking various courses with a group project component. He wishes to create groups among his friends / acquaintances and find balanced groups with diverse skillsets out of his own contact list.
+John is a NUS computer science student taking various courses with a group project component. He wishes to create groups among his friends / acquaintances and find balanced groups with diverse skillsets out of his own contact list.
 
 **Value proposition**:
 
@@ -258,42 +258,37 @@ To allow students to find balanced groups with diverse skillsets out of their ow
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                         | I want to …​                 | So that I can…​                                                        |
-|----------|------------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | student | easily add new courseMates with their information |  |
-| `* * *`  | careless user | edit information in the courseMate list | fix typos or inaccurate information about my friends mistakenly inputted into the app |
-| `* * *`  | careless user | delete an entry from the courseMate list | remove information mistakenly added to the app |
-| `* * *`  | student | add or remove skills of a courseMate | remember the strengths of each courseMate and consider them during team formation |
-| `* * *`  | lazy user | search through my list using specific keywords | avoid scrolling through the entire list |
-| `* * *`  | student finding group project partners | search for courseMates out of my contact list with a specific skillset | find a partner who is interested in or good at that particular course or subject |
-| `* * *`  | student forming group project teams | create a group project within the app and add courseMates to the group | remember who is already in the team |
-| `* * *`  | student forming group project teams | remove courseMates from a group | maintain information correctness after some courseMates are mistakenly added to the group |
-| `* * *`    | student forming group project teams | set some skills as required in a group | ensure that the group has the necessary skills to complete the project |
-| `* * *`    | student forming group project teams | look for courseMate recommendations based on the required skills | find courseMates who can complement the skills of the existing group members |
-| `* *`    | user who may not have the best eyesight | change the font size of texts in the app | I can adjust to a size most suited to me |
-| `* *`    | clueless student new to using the app | know what skills I should look out for in my friends | |
-| `* *`    | lazy user | autocomplete some commands with possible inputs | complete my tasks faster |
-| `* *`    | busy user | use the "up" arrow key for the app to display the previous command | save time typing a series of similar commands with common substrings |
-| `* *`    | new user | easily find a list of commands and how they are used | start using the app without difficulties |
-| `* *`    | student finding group project partners among acquaintances | maintain the contact details of my friends (telegram handles) in the app | easily contact potential groupmates who I don't frequently contact |
-| `* *`    | students working in many project teams | maintain the telegram group chat links in the app | easily contact my project groupmates for different projects |
-| `* *`    | student finding group project partners | input the courses each of my friends are planning to take or confirmed to take | limit my search to friends taking that specific course only |
-| `* *`    | student finding group project partners | mark courseMates as either friends or acquaintances | prioritise creating groups with some friends over acquaintances |
-| `* *`    | student forming a group | set some skills as extremely important | prioritise those skills while searching for team members |
+| Priority | As a …​                                         | I want to …​                                                                       | So that I can…​                                                        |
+|----------|------------------------------------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | student | easily add new courseMates with their information                                  |  |
+| `* * *`  | careless user | edit information in the courseMate list                                            | fix typos or inaccurate information about my friends mistakenly inputted into the app |
+| `* * *`  | careless user | delete an entry from the courseMate list                                           | remove information mistakenly added to the app |
+| `* * *`  | student | add or remove skills of a courseMate                                               | remember the strengths of each courseMate and consider them during team formation |
+| `* * *`  | lazy user | search through my list using specific keywords                                     | avoid scrolling through the entire list |
+| `* * *`  | student finding group project partners | search for courseMates out of my courseMate list with a specific skillset          | find a partner who is interested in or good at that particular course or subject |
+| `* * *`  | student forming group project teams | create a group project within the app and add courseMates to the group             | remember who is already in the team |
+| `* * *`  | student forming group project teams | remove courseMates from a group                                                    | maintain information correctness after some courseMates are mistakenly added to the group |
+| `* * *`    | student forming group project teams | set some skills as required in a group                                             | ensure that the group has the necessary skills to complete the project |
+| `* * *`    | student forming group project teams | look for courseMate recommendations based on the required skills                   | find courseMates who can complement the skills of the existing group members |
+| `* *`    | user who may not have the best eyesight | change the font size of texts in the app                                           | I can adjust to a size most suited to me |
+| `* *`    | clueless student new to using the app | know what skills I should look out for in my friends                               | |
+| `* *`    | lazy user | autocomplete some commands with possible inputs                                    | complete my tasks faster |
+| `* *`    | busy user | use the "up" arrow key for the app to display the previous command                 | save time typing a series of similar commands with common substrings |
+| `* *`    | new user | easily find a list of commands and how they are used                               | start using the app without difficulties |
+| `* *`    | student finding group project partners among acquaintances | maintain the courseMate details of my friends (telegram handles) in the app           | easily contact potential groupmates who I don't frequently contact |
+| `* *`    | students working in many project teams | maintain the telegram group chat links in the app                                  | easily contact my project groupmates for different projects |
+| `* *`    | student finding group project partners | input the courses each of my friends are planning to take or confirmed to take     | limit my search to friends taking that specific course only |
+| `* *`    | student finding group project partners | mark courseMates as either friends or acquaintances                                | prioritise creating groups with some friends over acquaintances |
+| `* *`    | student forming a group | set some skills as extremely important                                             | prioritise those skills while searching for team members |
 | `* *`    | student creating a group | search for possible combinations that match the required types of roles and skills | form project groups that require different kinds of roles or skills per member |
-| `* *`    | student forming a group | save a certain filter or search setting with a label | reuse my past search setting when I take courses of similar nature |
-| `* *`    | student forming a group | save the set of friends I already contacted with and their respective outcomes | know who else to consider and contact |
-| `* *`    | user who primarily used other formats to organize contacts | import data from a file | save the hassle of manually adding to the contact list |
-| `*`      | student bidding for tutorials of courses with group projects | maintain each potential partners' availability for different tutorial slots | decide on a common tutorial slot to bid for |
-| `*`      | student with past group project experiences | rate and review my group members after completing a project together | remember their skills, work ethics and collaboration styles during the next team formation |
-| `*`      | user with colour vision deficiency | customize the app's colour palette | better suit my visual needs and ensure that important elements and information are easily distinguishable |
-| `*`      | busy user | create alias commands | run long repetitive commands using a shorter self-made command |
+| `* *`    | student forming a group | save a certain filter or search setting with a label                               | reuse my past search setting when I take courses of similar nature |
+| `* *`    | student forming a group | save the set of friends I already contacted with and their respective outcomes     | know who else to consider and contact |
+| `* *`    | user who primarily used other formats to organize contacts | import data from a file                                                            | save the hassle of manually adding to the courseMate list |
+| `*`      | student bidding for tutorials of courses with group projects | maintain each potential partners' availability for different tutorial slots        | decide on a common tutorial slot to bid for |
+| `*`      | student with past group project experiences | rate and review my group members after completing a project together               | remember their skills, work ethics and collaboration styles during the next team formation |
+| `*`      | user with colour vision deficiency | customize the app's colour palette                                                 | better suit my visual needs and ensure that important elements and information are easily distinguishable |
+| `*`      | busy user | create alias commands                                                              | run long repetitive commands using a shorter self-made command |
 
-
-
-### Use cases
-
-(For all use cases below, the **System** is `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
 
 ### Use cases
 
@@ -376,11 +371,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User requests to edit a courseMate that does not exist.
-    * 1a1. MatchMate shows a message indicating the courseMate cannot be found.
+    * 1a1. MatchMate shows a message indicating that the courseMate cannot be found.
 
       Use case resumes at step 1.
 * 1b. User inputs invalid or incomplete data.
-    * 1b1. MatchMate shows a message indicating the data is invalid or incomplete.
+    * 1b1. MatchMate shows a message indicating that the data is invalid or incomplete.
 
       Use case resumes at step 1.
 * 1c. User inputs a name of which multiple courseMates have the specified name as a substring.
@@ -552,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requestest to edit the telegram chat of a group by specifying the group's name.
+1. User requests to edit the telegram chat of a group by specifying the group's name.
 2. MatchMate edits the telegram chat URL of the group.
 3. MatchMate shows the updated group.
 
@@ -588,13 +583,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add required skills to the group that is specified by the group's name.
+1. User requests to set skills required by the group that is specified by the group's name.
 2. MatchMate adds the required skills to the group.
 3. MatchMate shows the updated group.
 
    Use case ends.
 
-*Extensions**
+*Extensions*
 
 * 1a. User inputs incomplete data.
     * 1a1. MatchMate shows a message indicating incomplete data.
@@ -615,8 +610,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to remove required skills to the group that is specified by the group's name.
-2. MatchMate removes the required skills to the group.
+1. User requests to remove skills required by the group that is specified by the group's name.
+2. MatchMate removes the required skills from the group.
 3. MatchMate shows the updated group.
 
    Use case ends.
@@ -812,9 +807,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. <br> 
+       Expected: Shows the GUI with a set of sample courseMates. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -835,25 +831,25 @@ testers are expected to do more *exploratory* testing.
    Expected: Successfully adds Benson with his email. Phone number and skills are optional fields.
 
 ### Editing a courseMate
-1. Prerequisites: You have added Benson and Ivan into your contact list, by following the commands in the previous section.
+1. Prerequisites: You have added Benson and Ivan into your courseMate list, by following the commands in the previous section.
 
 1. Test case: `edit #1 -n Alex`<br>
-Expected: Edits the first contact's name to Alex
+Expected: Edits the first courseMate's name to Alex
 
 1. Test case: `edit Ivan -n Ivan Tan`<br>
 Expected: Edits Ivan's name to Ivan Tan
 
 1. Test case: `edit Ben -n Benson CS`<br>
-Expected: Edits Benson's name to Benson CS. Edit utilizes substring search, and because there's only 1 contact with a Ben substring, thus Benson's name gets updated to Benson CS.
+Expected: Edits Benson's name to Benson CS. Edit utilizes substring search, and because there's only 1 courseMate with "Ben" as its name's substring, thus Benson's name gets updated to Benson CS.
 
 ### Adding a skill to a courseMate
-1. Prerequisites: You have added Benson and Ivan into your contact list, by following the commands in the previous section.
+1. Prerequisites: You have added Benson and Ivan into your courseMate list, by following the commands in the previous section.
 
 1. Test case: `add-skill Ivan Tan -s C++`<br>
 Expected: Adds C++ skill to Ivan Tan
 
 1. Test case: `add-skill Benson CS -s JS -s SQL`<br>
-Expected: Adds JS and SQL skill to Benson, and also gives a warning that one if not more skils added have not been previously added to other contacts.
+Expected: Adds JS and SQL skills to Benson, and also gives a warning that if one or more skils added have not been previously added to other courseMates.
 This error message serves to warn for any potential typos when adding skills
 
 ### Deleting a skill from a courseMate
@@ -866,10 +862,10 @@ Expected: React skill is deleted from Ivan Tan
 Expected: JS and SQL skills are deleted from Benson
 
 ### Search courseMates with keywords
-1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
+1. Prerequisites: You are using the preloaded data, and have only added two new courseMates, Ivan Tan and Benson CS.
 
 1. Test case: `find-mate Ivan` <br>
-Expected: Finds Ivan Tan in the contact list
+Expected: Finds Ivan Tan in the courseMate list
 
 1. Test case: `find-mate a` <br>
 Expected: Finds all courseMates whose names/skills contain a
@@ -882,7 +878,7 @@ Expected: Finds all courseMates whose names/skills contain C++
 1. Prerequisites: List all courseMates using the `list` command. Multiple courseMates in the list.
 
 1. Test case: `delete #1` <br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   Expected: First courseMate is deleted from the list. Details of the deleted courseMate shown in the status message.
 
 1. Test case: `delete #0` <br>
    Expected: No courseMate is deleted. Error details shown in the status message.
@@ -892,16 +888,16 @@ Expected: Finds all courseMates whose names/skills contain C++
 
 ### Rate a courseMate
 
-1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
+1. Prerequisites: You are using the preloaded data, and have only added two new courseMates, Ivan Tan and Benson CS.
 
 1. Test case: `rate-mate Ivan Tan -r 4`<br>
-Expected: Shows 4 stars out of 5 on Ivan's contact card.
+Expected: Shows 4 stars out of 5 on Ivan's courseMate card.
 
 2. Test case: `rate-mate Benson CS -r 6`<br>
 Expected: Shows an error message saying that ratings can only be between 0 and 5.
 
 ### Creating a group
-1. Prerequisites: You are using the preloaded data, and have only added two new contacts, Ivan Tan and Benson CS.
+1. Prerequisites: You are using the preloaded data, and have only added two new courseMates, Ivan Tan and Benson CS.
 
 1. Test case: `create-group CS project -cm Ivan -t https://t.me/+WDTg34uuUlH8Ml2d -s C++` <br>
 Expected: Creates a group called CS project, with Ivan as one of its group members. Also adds a telegram link for the group, and adds C++ as a skill required in the group.
@@ -912,7 +908,7 @@ Expected: Creates a group called ES 2660, with Benson as one of its group member
 A warning is also given as leadership is not a skill that has been added anywhere. The skill Leadership is red as its only member, as Benson does not have Leadership skill
 
 ### Adding courseMates to a group
-1. Prerequisites: You have followed all the steps along and added two new contacts Ivan and Benson, as well as created two new groups "CS project" and "ES2660"
+1. Prerequisites: You have followed all the steps along and added two new courseMates Ivan and Benson, as well as created two new groups "CS project" and "ES2660"
 
 2. Test case: `add-skill Ivan -s Leadership` then `add-member ES2660 -cm Ivan` <br>
 Expected: The first command adds a skill called Leadership to Ivan, then add Ivan to the ES2660 group. As a result, the Leadership skill in ES2660 turns to green as one of its group members

@@ -295,86 +295,108 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new contact**
+### Use cases
+
+(For all use cases below, the **System** is `MatchMate` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Get help on commands**
 
 **MSS**
 
-1. User requests to add a new contact along with the data.
-2. MatchMate adds the contact to the list.
-3. MatchMate shows the updated list of contacts.
+1. User requests for help.
+2. MatchMate returns a link to the user guide.
 
-    Use case ends.
+   Use case ends.
 
-**Extensions**
-
-* 1a. User inputs invalid or incomplete data. 
-    * 1a1. MatchMate shows a message indicating the data is invalid or incomplete.
-    
-      Use case resumes at step 1.
-
-**Use case: Delete a contact**
+**Use case: UC02 - Add a new courseMate**
 
 **MSS**
 
-1. User requests to delete a contact.
-2. MatchMate deletes the contact.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. User inputs a contact that does not exist.
-    * 1a1. MatchMate shows a message indicating that the contact cannot be found.
-
-      Use case resumes at step 1.
-* 1b. User inputs a name of which multiple contacts have the specified name as a substring.
-  * 1b1. MatchMate filters and lists the contacts that has the name.
-
-    Use case resumes at step 1.
-
-**Use case: List all contacts**
-
-**MSS**
-
-1. User requests to list all contacts.
-2. MatchMate shows all contacts.
-
-    Use case ends.
-
-**Use case: Edit a contact**
-
-**MSS**
-
-1. User requests to edit a contact along with the new data.
-2. MatchMate adds the contact to the list.
-3. MatchMate shows the updated list of contacts.
+1. User requests to add a new courseMate along with the data.
+2. MatchMate adds the courseMate to the list.
+3. MatchMate shows the updated list of courseMate.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User requests to edit a contact that does not exist.
-    * 1a1. MatchMate shows a message indicating that the contact cannot be found.
-      
+* 1a. User inputs invalid or incomplete data.
+    * 1a1. MatchMate shows a message indicating the data is invalid or incomplete.
+
+      Use case resumes at step 1.
+
+**Use case: UC03 - Delete a courseMate**
+
+**MSS**
+
+1. User requests to delete a courseMate.
+2. MatchMate deletes the courseMate.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a courseMate that does not exist.
+    * 1a1. MatchMate shows a message indicating the courseMate cannot be found.
+
+      Use case resumes at step 1.
+* 1b. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1b1. MatchMate filters and lists the courseMates that has the name.
+
+      Use case resumes at step 1.
+
+**Use case: UC04 - List all courseMates**
+
+**MSS**
+
+1. User requests to list all courseMates.
+2. MatchMate shows all courseMates.
+
+   Use case ends.
+
+**Use case: UC05 - Filter courseMates based on keyword**
+
+**MSS**
+
+1. User requests to find courseMates with the specified keyword.
+2. MatchMate shows a list of the filtered courseMate.
+
+   Use case ends.
+
+**Use case: UC06 - Edit a courseMate**
+
+**MSS**
+
+1. User requests to edit a courseMate along with the new data.
+2. MatchMate edits the courseMate's respective fields.
+3. MatchMate shows the updated list of courseMates.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to edit a courseMate that does not exist.
+    * 1a1. MatchMate shows a message indicating the courseMate cannot be found.
+
       Use case resumes at step 1.
 * 1b. User inputs invalid or incomplete data.
     * 1b1. MatchMate shows a message indicating the data is invalid or incomplete.
 
       Use case resumes at step 1.
-* 1c. User inputs a name of which multiple contacts have the specified name as a substring.
-    * 1c1. MatchMate filters and lists the contacts that has the name.
+* 1c. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the courseMates that has the name.
 
       Use case resumes at step 1.
 
-**Use case: Add skills to a contact**
+**Use case: UC07 - Add skills to a courseMate**
 
 **MSS**
 
-1. User requests to add skills to a contact.
-2. MatchMate appends the skills to the contact.
-3. MatchMate shows the updated list of contacts.
+1. User requests to add skills to a courseMate.
+2. MatchMate appends the skills to the courseMate.
+3. MatchMate shows the updated list of courseMates.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -383,30 +405,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1b. User inputs a contact that does not exist.
-    * 1b1. MatchMate shows a message indicating that the contact cannot be found.
+* 1b. User inputs a courseMate that does not exist.
+    * 1b1. MatchMate shows a message indicating the courseMate cannot be found.
 
       Use case resumes at step 1.
-  
+
 * 1c. User inputs a skill that does not exist yet.
-    * 1c1. MatchMate shows a warning message indicating that the skill is a new entry.
+    * 1c1. MatchMate shows a warning message indicating the skill is a new entry.
 
       Use case ends.
 
-* 1d. User inputs a name of which multiple contacts have the specified name as a substring.
-    * 1d1. MatchMate filters and lists the contacts that has the name.
+* 1d. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1d1. MatchMate filters and lists the courseMates that has the name.
 
       Use case resumes at step 1.
 
-**Use case: Delete skills from a contact**
+**Use case: UC08 - Delete skills from a courseMate**
 
 **MSS**
 
-1. User requests to delete existing skills from a contact.
-2. MatchMate removes the specified skills from the contact.
-3. MatchMate shows the updated list of contacts.
+1. User requests to delete existing skills from a courseMate.
+2. MatchMate removes the specified skills from the courseMate.
+3. MatchMate shows the updated list of courseMates.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -415,38 +437,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1b. User inputs a contact that does not exist.
-    * 1b1. MatchMate shows a message indicating that the contact cannot be found.
+* 1b. User inputs a courseMate that does not exist.
+    * 1b1. MatchMate shows a message indicating the courseMate cannot be found.
 
       Use case resumes at step 1.
 
-* 1c. User inputs a skill the contact does not have.
-    * 1c1. MatchMate shows a message indicating that the skill cannot be found.
+* 1c. User inputs a skill the courseMate does not have.
+    * 1c1. MatchMate shows a message indicating the skill cannot be found.
 
       Use case resumes at step 1.
 
-* 1d. User inputs a name of which multiple contacts have the specified name as a substring.
-    * 1d1. MatchMate filters and lists the contacts that has the name.
+* 1d. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1d1. MatchMate filters and lists the courseMates that has the name.
 
       Use case resumes at step 1.
 
-**Use case: Filter contacts based on keyword**
-
-**MSS**
-
-1. User requests to find contacts with the specified keyword.
-2. MatchMate shows a list of the filtered contacts.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. No contacts fulfill the filter search.
-    * 1a1. MatchMate shows a message indicating no contacts can be found.
-
-      Use case ends.
-
-**Use case: Create a group**
+**Use case: UC09 - Create a group**
 
 **MSS**
 
@@ -462,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Delete a group**
+**Use case: UC10 - Delete a group**
 
 **MSS**
 
@@ -474,24 +480,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User inputs a group that does not exist.
-    * 1a1. MatchMate shows a message indicating that the group cannot be found.
+    * 1a1. MatchMate shows a message indicating the group cannot be found.
 
       Use case resumes at step 1.
 
-**Use case: Add a contact to a group**
+**Use case: UC11 - Add a courseMate to a group**
 
 **MSS**
 
-1. User requests to add a contact to a group with a specified name or index from the displayed list.
-2. MatchMate adds the contact to the group.
-3. MatchMate shows the updated list of contacts in the specified group.
+1. User requests to add a courseMate to a group by specifying the group's name.
+2. MatchMate adds the courseMate to the group.
+3. MatchMate shows the updated list of courseMates in the specified group.
 
    Use case ends.
 
 **Extensions**
-  
-* 1a. User inputs a name or index no contacts correspond to.
-    * 1a1. MatchMate shows a message indicating the contact doesn't exist.
+
+* 1a. User inputs a name or index no courseMates correspond to.
+    * 1a1. MatchMate shows a message indicating the courseMate doesn't exist.
 
       Use case resumes at step 1.
 
@@ -500,15 +506,256 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1c. User inputs a name of which multiple contacts have the specified name as a substring.
-    * 1c1. MatchMate filters and lists the contacts that has the name.
+* 1c. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the courseMates that has the name.
 
       Use case resumes at step 1.
 
-* 1d. The contact is already in the group.
-    * 1d1. MatchMate shows a message indicating the contact is already in the group.
+* 1d. The courseMate is already in the group.
+    * 1d1. MatchMate shows a message indicating the courseMate is already in the group.
 
       Use case resumes at step 1.
+
+**Use case: UC12 - Remove a courseMate from a group**
+
+**MSS**
+
+1. User requests to remove a courseMate to a group by specifying the group's name.
+2. MatchMate removes the courseMate to the group.
+3. MatchMate shows the updated list of courseMates in the specified group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs a name or index no courseMates correspond to.
+    * 1a1. MatchMate shows a message indicating the courseMate doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the courseMates that has the name.
+
+      Use case resumes at step 1.
+
+* 1d. The courseMate is not in the group.
+    * 1d1. MatchMate shows a message indicating the courseMate is not in the group.
+
+      Use case resumes at step 1.
+
+**Use case: UC13 - Edit telegram chat URL for group**
+
+**MSS**
+
+1. User requestest to edit the telegram chat of a group by specifying the group's name.
+2. MatchMate edits the telegram chat URL of the group.
+3. MatchMate shows the updated group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a telegram chat URL with an invalid syntax.
+    * 1c1. MatchMate shows a message indicating the telegram chat URL is invalid.
+
+      Use case resumes at step 1.
+
+**Use case: UC14 - Filter groups based on keyword**
+
+**MSS**
+
+1. User requests to find groups with the specified keyword.
+2. MatchMate shows a list of the filtered groups.
+
+   Use case ends.
+
+**Use case: UC15 - Add skills required for the group**
+
+**MSS**
+
+1. User requests to add required skills to the group that is specified by the group's name.
+2. MatchMate adds the required skills to the group.
+3. MatchMate shows the updated group.
+
+   Use case ends.
+
+*Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a skill that does not exist yet.
+    * 1c1. MatchMate shows a warning message indicating the skill is a new entry.
+
+      Use case ends.
+
+**Use case: UC16 - Remove skills that were required for the group**
+
+**MSS**
+
+1. User requests to remove required skills to the group that is specified by the group's name.
+2. MatchMate removes the required skills to the group.
+3. MatchMate shows the updated group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a skill that is not in the group's list of required skills.
+    * 1c1. MatchMate shows a message indicating the skill cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: UC17 - Mark required skills of a group as important**
+
+**MSS**
+
+1. User requests to mark required skills of a group as important. The group is specified by the group's name.
+2. MatchMate marks the required skills requested as important.
+3. MatchMate shows the updated group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a skill that is not in the group's list of required skills.
+    * 1c1. MatchMate shows a message indicating the skill cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: UC18 - Unmark required skills' importance of a group**
+
+**MSS**
+
+1. User requests to unmark required skills' importance of a group. The group is specified by the group's name.
+2. MatchMate unmarks the required skills requested as important.
+3. MatchMate shows the updated group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a skill that is not in the group's list of required skills.
+    * 1c1. MatchMate shows a message indicating the skill cannot be found.
+
+      Use case resumes at step 1.
+
+**Use case: UC19 - Suggests mates for a group**
+
+**MSS**
+
+1. User requests to suggest courseMates for a group specified by the group's name.
+2. MatchMate filters the courseMate list based on the required skills not satisfied in the group.
+3. MatchMate shows the updated list of courseMates.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete data.
+    * 1a1. MatchMate shows a message indicating incomplete data.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs a group name that doesn't exist.
+    * 1b1. MatchMate shows a message indicating the group doesn't exist.
+
+      Use case resumes at step 1.
+
+* 1c. All of the required skills in the group are already covered.
+    * 1c1. MatchMate shows a message indicating all required skills are fulfilled.
+
+      Use case ends.
+
+**Use case: UC20 - Give a rating for a courseMate**
+
+**MSS**
+
+1. User requests to give a rating to a courseMate specified by a name or an index.
+2. MatchMate adds the courseMate's rating.
+3. MatchMate shows the updated list of courseMates.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to edit a courseMate that does not exist.
+    * 1a1. MatchMate shows a message indicating the courseMate cannot be found.
+
+      Use case resumes at step 1.
+* 1b. User inputs invalid or incomplete data.
+    * 1b1. MatchMate shows a message indicating the data is invalid or incomplete.
+
+      Use case resumes at step 1.
+* 1c. User inputs a name of which multiple courseMates have the specified name as a substring.
+    * 1c1. MatchMate filters and lists the courseMates that has the name.
+
+      Use case resumes at step 1.
+* 1d. User provides an invalid rating
+    * 1d1. MatchMate shows a message indicating the rating is invalid.
+
+      Use case resumes at step 1.
+
+**Use case: UC21 - Exit the application**
+
+**MSS**
+
+1. User requests to exit the program.
+2. MatchMate terminates the program.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 

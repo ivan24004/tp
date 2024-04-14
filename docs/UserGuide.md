@@ -16,6 +16,10 @@ familiarity with keyboard shortcuts will significantly improve your experience w
 <!-- * Table of Contents -->
 <page-nav-print />
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Navigating the User Guide
 This user guide serves as an introductory guide to our app, MatchMate. Through this user guide, we hope to introduce
 to users what features are available, the format for each command, as well as to give instructions to aid users when a command
@@ -23,11 +27,11 @@ is invalid or fails.
 
 Ready to connect with other like-minded students and create the best group possible? Then jump right in with our list of features:
 
-**Coursemate Management**
-- **[Add Coursemate](#adding-a-coursemate-add)**: Met a new friend? Add them to your contact list with `add`.
-- **[Edit Coursemate](#editing-a-coursemate-edit)**: Wrongly inputted some details? No worries! Edit your course mate's information using  `edit`.
+**CourseMate Management**
+- **[Add courseMate](#adding-a-coursemate-add)**: Met a new friend? Add them to your contact list with `add`.
+- **[Edit courseMate](#editing-a-coursemate-edit)**: Wrongly inputted some details? No worries! Edit your course mate's information using  `edit`.
 - **[Add skills to a courseMate](#add-a-skill-to-a-coursemate-add-skill)**: Does your friend have notable skills that you want to take note of? If so, then you can use `add-skill`.
-- **[Delete skills from a courseMate](#delete-a-skill-from-a-coursemate-delete-skill)**: Mistyped the skill name? Delete the skill by using `delete-skill`
+- **[Delete skills from a courseMate](#delete-a-skill-from-a-coursemate-delete-skill)**: Mistyped the skill name? Delete the skill by using `delete-skill`.
 - **[Finding courseMates](#search-coursemates-with-keywords-find-mate)**: Looking for someone specific? The `find-mate` command does exactly that!
 - **[Rate courseMate](#give-rating-to-your-coursemates-rate-mate)**: Had a good/bad experience with your course mates? `rate-mate` helps you to keep track of those experiences!
 - **[List all courseMates](#listing-all-coursemates-and-groups-list)**: Shows all course mates and groups with `list`.
@@ -37,16 +41,20 @@ Ready to connect with other like-minded students and create the best group possi
 - **[Create a group](#create-group-project-create-group)**: Create a group for your upcoming project with `create-group`.
 - **[Add members to your group](#add-coursemates-to-group-add-member)**: Easily add your friends to the group project using `add-member`.
 - **[Delete members from your group](#delete-coursemates-from-group-delete-member)**: Changed your mind on some group members? `delete-member` has you covered!
-- **[Add/edit a telegram URL to your group](#edit-the-telegram-chat-url-of-a-group-edit-tg-chat-url)**: Bring over the discussion to telegram by adding a telegram group url using `edit-tg-chat-url`
+- **[Add/edit a telegram URL to your group](#edit-the-telegram-chat-url-of-a-group-edit-tg-chat-url)**: Bring over the discussion to telegram by adding a telegram group url using `edit-tg-chat-url`.
 - **[Require skill](#require-skills-in-a-group-require-skill)**: Require some specific skill sets for your group project? Add those requirements using `require-skill`.
 - **[Unrequire skill](#unrequire-skills-in-a-group-unrequire-skill)**: Had second thoughts on the required skills? Easily delete them with `unrequire-sklill`.
 - **[Mark important skills](#mark-important-skills-in-a-group-mark-important)**: Often times some skills are more needed than others. Mark these important skills with `mark-important`.
 - **[Unmark important skills](#unmark-important-skills-in-a-group-unmark-important)**: Made a mistake in marking what's important? `unmark-important` reverses that.
-- **[Suggest mate](#suggest-coursemates-for-group-suggest-mate)**: Not sure which course mate to add into your group? `suggest-mate` helps you find course mates that fulfills the group's required skills
+- **[Suggest mate](#suggest-coursemates-for-group-suggest-mate)**: Not sure which course mate to add into your group? `suggest-mate` helps you find course mates that fulfills the group's required skills.
 - **[Finding groups](#search-groups-with-keywords-find-group)**: Looking for a specific group? The `find-group` command does exactly that!
 - **[Delete a group](#delete-a-group-delete-group)**: Finally done with your project? Say goodbye to your group project and remove it with `delete-group`.
 
 Forgot about the features and formats for each command? Head over to the [Command Summary](#command-summary) for a quick overview.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 There may be some unfamiliar terms and tech jargon sprinkled within our user guide. As such, this segment aims to simplify those terms
@@ -58,7 +66,7 @@ to improve your experience with MatchMate.
 | **Command**                  | A user input that will cause the application to perform an operation according to the MatchMate UserGuide                                                                         |
 | **Command History**          | A record that keeps track of commands that has been executed                                                                                                                      |
 | **Command Line Interface**   | A text-based interface where you can input commands                                                                                                                               |
-| **Coursemate**               | A friend or classmate that you expect to form a group based on certain skills they might have                                                                                     | 
+| **CourseMate**               | A friend or classmate that you expect to form a group based on certain skills they might have                                                                                     | 
 | **Graphical User Interface** | A digital interface in which a user interacts with graphical components such as icons, buttons, and menus                                                                         | 
 | **Group**                    | A grouping/team of courseMates for a course, project, or activity                                                                                                                 | 
 | **JSON**                     | Stands for JavaScript Object Notation. It uses human-readable text to store and transmit data objects                                                                             |                                                          
@@ -81,20 +89,18 @@ to improve your experience with MatchMate.
 ## Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
+   <box type="info" seamless>
 
+   First check if you have Java 11 by opening your terminal, and typing in `java -version`. If the command fails, that means that
+   you have not downloaded Java yet. If you do not have Java 11 installed yet, then you can download it from [here](https://www.oracle.com/sg/java/technologies/downloads/).
+   
+   </box>
 
-<box type="info" seamless>
-
-First check if you have Java 11 by opening your terminal, and typing in `java -version`. If the command fails, that means that
-you have not downloaded Java yet. If you do not have Java 11 installed yet, then you can download it from [here](https://www.oracle.com/sg/java/technologies/downloads/)
-
-</box>
-
-1. Download the latest `matchmate.jar` from [here](https://github.com/AY2324S2-CS2103T-F13-3/tp/releases/tag/v1.3.1)
+1. Download the latest `matchmate.jar` from [here](https://github.com/AY2324S2-CS2103T-F13-3/tp/releases/latest).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your app.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar matchmate.jar` command to run the application.<br>
+1. Select "Open in Terminal" in the folder you put the jar file in, and use the `java -jar matchmate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -109,7 +115,7 @@ you have not downloaded Java yet. If you do not have Java 11 installed yet, then
    
    * `create-group CS Group -cm John Doe -s C++ -s Java` : Creates a group containing John Doe, this group also requires the skill C++.
    
-   * `suggest-mate CS Group`: suggests a possible courseMate whose skills match some unfulfilled skills in the group `CS Group`
+   * `suggest-mate CS Group`: Suggests a possible courseMate whose skills match some unfulfilled skills in the group `CS Group`.
 
    * `exit` : Exits the app.
 
@@ -289,8 +295,8 @@ Instead of supplying a full name to identify an existing courseMate, you can use
       `#2 Ben`  
       Typing `edit Ben` will display a warning message for having multiple matches.
     - Case 1: If you want to edit Benson:
-        - Type  `edit Benson ...` or just its substring `edit Bens ...`
-        - Alternatively, you can use the alias `edit #1 ...`
+        - Type  `edit Benson ...` or just its substring `edit Bens ...`.
+        - Alternatively, you can use the alias `edit #1 ...`.
     - Case 2: If you want to edit Ben:
         - Type `edit #2 ...` as you must specify its index in the list.
 </box>
@@ -551,6 +557,21 @@ It is recommended to take a backup of the original save file before editing it.<
 Certain edits can cause the MatchMate to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## Troubleshooting
+
+**Q**: I encountered the error message `Invalid command format!` when I tried to execute a command. What should I do?<br>
+**A**: You are likely to have missed out on a required parameter for the command. Refer to the [Command Summary](#command-summary) for the correct format of the command.
+Note that parameters in square brackets are optional, while those without square brackets are required.
+
+**Q**: I encountered the error message `Some of the specified members could not be found.` when I tried to add a member to a group. What should I do?<br>
+**A**: If you used the hashtag notation (`##` or `#n`) to refer to a courseMate, check if the courseMate is displayed in the panel. Retry the command with an existing hashtag. Otherwise, you may have misspelled the courseMate's name. You can use the `find-mate` command to search for the courseMate.
+
+**Q**: I accidentally deleted a courseMate. Can I undo the deletion?<br>
+**A**: Unfortunately, the deletion of a courseMate is irreversible. You will need to re-add the courseMate to the list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,10 +581,11 @@ Certain edits can cause the MatchMate to behave in unexpected ways (e.g., if a v
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MatchMate home folder.
 
 **Q**: Do I need internet connection to run MatchMate?<br>
-**A**: MatchMate is an offline application that does not require any internet connection
+**A**: MatchMate is an offline application that does not require any internet connection.
 
 **Q**: How do I save the changes that I have made?<br>
 **A**: All your data is automatically saved, so there's no need to manually save it.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues

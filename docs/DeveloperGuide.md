@@ -834,7 +834,7 @@ testers are expected to do more *exploratory* testing.
 1. Prerequisites: You have added Benson and Ivan into your courseMate list, by following the commands in the previous section.
 
 1. Test case: `edit #1 -n Alex`<br>
-Expected: Edits the first courseMates name to Alex
+Expected: Edits the first courseMate's name to Alex
 
 1. Test case: `edit Ivan -n Ivan Tan`<br>
 Expected: Edits Ivan's name to Ivan Tan

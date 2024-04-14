@@ -28,8 +28,8 @@ is invalid or fails.
 Ready to connect with other like-minded students and create the best group possible? Then jump right in with our list of features:
 
 **CourseMate Management**
-- **[Add courseMate](#adding-a-coursemate-add)**: Met a new friend? Add them to your contact list with `add`.
-- **[Edit courseMate](#editing-a-coursemate-edit)**: Wrongly inputted some details? No worries! Edit your course mate's information using  `edit`.
+- **[Add a courseMate](#adding-a-coursemate-add)**: Met a new friend? Add them to your contact list with `add`.
+- **[Edit a courseMate](#editing-a-coursemate-edit)**: Wrongly inputted some details? No worries! Edit your course mate's information using  `edit`.
 - **[Add skills to a courseMate](#add-a-skill-to-a-coursemate-add-skill)**: Does your friend have notable skills that you want to take note of? If so, then you can use `add-skill`.
 - **[Delete skills from a courseMate](#delete-a-skill-from-a-coursemate-delete-skill)**: Mistyped the skill name? Delete the skill by using `delete-skill`.
 - **[Finding courseMates](#search-coursemates-with-keywords-find-mate)**: Looking for someone specific? The `find-mate` command does exactly that!
@@ -42,8 +42,8 @@ Ready to connect with other like-minded students and create the best group possi
 - **[Add members to your group](#add-coursemates-to-group-add-member)**: Easily add your friends to the group project using `add-member`.
 - **[Delete members from your group](#delete-coursemates-from-group-delete-member)**: Changed your mind on some group members? `delete-member` has you covered!
 - **[Add/edit a telegram URL to your group](#edit-the-telegram-chat-url-of-a-group-edit-tg-chat-url)**: Bring over the discussion to telegram by adding a telegram group url using `edit-tg-chat-url`.
-- **[Require skill](#require-skills-in-a-group-require-skill)**: Require some specific skill sets for your group project? Add those requirements using `require-skill`.
-- **[Unrequire skill](#unrequire-skills-in-a-group-unrequire-skill)**: Had second thoughts on the required skills? Easily delete them with `unrequire-sklill`.
+- **[Require skills](#require-skills-in-a-group-require-skill)**: Require some specific skill sets for your group project? Add those requirements using `require-skill`.
+- **[Unrequire skills](#unrequire-skills-in-a-group-unrequire-skill)**: Had second thoughts on the required skills? Easily delete them with `unrequire-sklill`.
 - **[Mark important skills](#mark-important-skills-in-a-group-mark-important)**: Often times some skills are more needed than others. Mark these important skills with `mark-important`.
 - **[Unmark important skills](#unmark-important-skills-in-a-group-unmark-important)**: Made a mistake in marking what's important? `unmark-important` reverses that.
 - **[Suggest mate](#suggest-coursemates-for-group-suggest-mate)**: Not sure which course mate to add into your group? `suggest-mate` helps you find course mates that fulfills the group's required skills.
@@ -84,7 +84,8 @@ to improve your experience with MatchMate.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;">
+</div>
 
 ## Quick start
 
@@ -308,7 +309,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Add a skill to a courseMate : `add-skill`
+### Add skills to a courseMate : `add-skill`
 Adds a list of skills to a courseMate. Adding a skill that already exists in the courseMate
 will still succeed, but it won't show duplicate skills.
 
@@ -323,7 +324,7 @@ Examples:
 - `add-skill John Doe -s C++ -s Leadership`
 
   
-### Delete a skill from a courseMate  : `delete-skill`
+### Delete skills from a courseMate  : `delete-skill`
 Deletes a list of skills from a courseMate.
 
 Format: `delete-skill COURSEMATE -s SKILL [-s SKILL]...`
@@ -335,7 +336,7 @@ Parameters:
 Examples:
 - `delete-skill John Doe -s C++ -s Leadership`
 
-### Search courseMates with keywords: `find-mate`
+### Finding courseMates with keywords: `find-mate`
 
 Finds all courseMates whose names or skills contain the specified keyphrase (case-insensitive).
 
@@ -365,9 +366,9 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Give rating to your courseMates: `rate-mate`
+### Rate a courseMate: `rate-mate`
 
-Rates courseMates by up to five stars.
+Rates a courseMate by up to five stars.
 
 Format: `rate-mate COURSEMATE -r RATING`
 
@@ -446,6 +447,12 @@ Parameters:
 
 Examples:
 - `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
+
+<box type="info" seamless>
+<b>Note:</b> Supplying more than one telegram chat URL
+
+Only the last supplied telegram chat URL will be considered when URLs are given
+</box>
 
 ### Require skills in a group: `require-skill`
 
@@ -600,22 +607,22 @@ Note that parameters in square brackets are optional, while those without square
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add courseMate**    | `add NAME -e EMAIL [-p PHONE_NUMBER] [-t TELEGRAM_HANDLE] [-s SKILL]...​` <br> e.g., `add John Doe -e johndoe@example.com -p 87654321 -t johndoe -s Leadership -s C++`
-**Add group member**    |   `add-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
-**Add skill**   |   ` add-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
+**Add a courseMate**    | `add NAME -e EMAIL [-p PHONE_NUMBER] [-t TELEGRAM_HANDLE] [-s SKILL]...​` <br> e.g., `add John Doe -e johndoe@example.com -p 87654321 -t johndoe -s Leadership -s C++`
+**Add group members**    |   `add-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
+**Add skills**   |   ` add-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
 **Create group**    |   `create-group GROUP_NAME [-t TELEGRAM_CHAT_URL] [-cm COURSEMATE]... [-s SKILL]...` <br> e.g., `create-group CS2103T G18 -cm John -s C++ -s Java -cm #2 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Delete courseMate**  | `delete COURSEMATE` <br> e.g., `delete John`
 **Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
-**Delete group member**    |   `delete-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
-**Delete skill** | `delete-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
+**Delete group members**    |   `delete-member GROUP_NAME -cm COURSEMATE [-cm COURSEMATE]...` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
+**Delete skills** | `delete-skill COURSEMATE -s SKILL [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
 **Edit courseMate**   | `edit COURSEMATE [-n NEW_NAME] [-e NEW_EMAIL] [-p NEW_PHONE_NUMBER] [-t NEW_TELEGRAM_HANDLE]​`<br>**(at least one field to edit must be supplied)**<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com -t johndoe1234`
 **Edit group telegram chat URL**    | `edit-tg-chat-url GROUP_NAME -t NEW_TELEGRAM_CHAT_URL` <br> e.g., `edit-tg-chat-url CS2103T G18 -t https://t.me/+WDTg34uuUlH8Ml2d`
 **Find courseMate**   | `find-mate KEYPHRASE`<br> e.g., `find John`
 **Find group**   | `find-group KEYPHRASE`<br> e.g., `find CS2103T`
 **Help**   | `help`
 **List**   | `list`
-**Mark skill important in group**   | `mark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `mark-important CS2103T G18 -s C++ -s Java`
-**Require skill in group**    | `require-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `require-skill CS2103T G18 -s C++ -s Java`
+**Mark skills as important in group**   | `mark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `mark-important CS2103T G18 -s C++ -s Java`
+**Require skills in group**    | `require-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `require-skill CS2103T G18 -s C++ -s Java`
 **Suggest courseMates for group** | `suggest-mate GROUP_NAME` <br> e.g., `suggest-mate CS2103T G18`
-**Unmark skill important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
-**Unrequire skill in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`
+**Unmark skills as important in group**   | `unmark-important GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unmark-important CS2103T G18 -s C++ -s Java`
+**Unrequire skills in group**    | `unrequire-skill GROUP_NAME -s SKILL [-s SKILL]...` <br> e.g., `unrequire-skill CS2103T G18 -s C++ -s Java`

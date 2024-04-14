@@ -99,13 +99,17 @@ you have not downloaded Java yet. If you do not have Java 11 installed yet, then
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
-   Some example commands you can try:
+   Some example commands you can try, these commands simulate the user flow of adding contacts, creating a group that require skills, and finding members for said group:
 
    * `list` : Lists all courseMates.
    
    * `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`: Adds a courseMate named `John Doe` to the courseMate list.
 
    * `delete #3` : Deletes the 3rd courseMate shown in the current list.
+   
+   * `create-group CS Group -cm John Doe -s C++ -s Java` : Creates a group containing John Doe, this group also requires the skill C++.
+   
+   * `suggest-mate CS Group`: suggests a possible courseMate whose skills match some unfulfilled skills in the group `CS Group`
 
    * `exit` : Exits the app.
 
